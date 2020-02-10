@@ -29,6 +29,7 @@
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunManager">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true">
@@ -38,9 +39,9 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="" />
+      <option name="SDK_HOME" value="C:\Users\sooor\AppData\Local\Programs\Python\Python37\python.exe" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
@@ -84,6 +85,10 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
+    <state x="358" y="0" key="#main" timestamp="1581324080238">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="358" y="0" key="#main/0.0.1280.680@0.0.1280.680" timestamp="1581324080238" />
     <state width="1259" height="163" key="GridCell.Tab.0.bottom" timestamp="1581323924206">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
