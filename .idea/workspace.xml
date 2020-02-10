@@ -10,14 +10,13 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="MERGE" />
   </component>
   <component name="ProjectId" id="1XbJKdoNZHpREakY1Tbdw1Uzw7T" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -30,12 +29,6 @@
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/welfare_project" />
-  </component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\sooor\Desktop\project\view\board" />
-    </key>
   </component>
   <component name="RunManager">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true">
@@ -45,9 +38,9 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="C:\ProgramData\Anaconda3\python.exe" />
+      <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="false" />
+      <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
@@ -91,33 +84,21 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="358" y="0" key="#main" timestamp="1581318543767">
+    <state width="1259" height="163" key="GridCell.Tab.0.bottom" timestamp="1581323924206">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="358" y="0" key="#main/0.0.1280.680@0.0.1280.680" timestamp="1581318543767" />
-    <state x="421" y="96" key="FileChooserDialogImpl" timestamp="1581322782532">
+    <state width="1259" height="163" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1581323924206" />
+    <state width="1259" height="163" key="GridCell.Tab.0.center" timestamp="1581323924206">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="421" y="96" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1581322782532" />
-    <state width="1224" height="147" key="GridCell.Tab.0.bottom" timestamp="1581322785676">
+    <state width="1259" height="163" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1581323924206" />
+    <state width="1259" height="163" key="GridCell.Tab.0.left" timestamp="1581323924205">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1224" height="147" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1581322785676" />
-    <state width="1224" height="147" key="GridCell.Tab.0.center" timestamp="1581322785675">
+    <state width="1259" height="163" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1581323924205" />
+    <state width="1259" height="163" key="GridCell.Tab.0.right" timestamp="1581323924206">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1224" height="147" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1581322785675" />
-    <state width="1224" height="147" key="GridCell.Tab.0.left" timestamp="1581322785675">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state width="1224" height="147" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1581322785675" />
-    <state width="1224" height="147" key="GridCell.Tab.0.right" timestamp="1581322785675">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state width="1224" height="147" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1581322785675" />
-    <state x="444" y="258" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1581319600787">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state x="444" y="258" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.680@0.0.1280.680" timestamp="1581319600787" />
+    <state width="1259" height="163" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1581323924206" />
   </component>
 </project>
