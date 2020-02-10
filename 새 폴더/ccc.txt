@@ -1,5 +1,0 @@
-cccc
-o
-bbb
-
-aaa
