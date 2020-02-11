@@ -2,7 +2,7 @@ from flask import Flask
 from board import board
 from main import index
 from user import user
-
+from intro import intro
 
 
 app = Flask(__name__)
@@ -15,5 +15,6 @@ app.secret_key = '13kldnfkl24ndfdsf'
 app.register_blueprint(index.main_blue)
 app.register_blueprint(board.board_blue)
 app.register_blueprint(user.user_blue)
+app.register_blueprint(intro.intro_blue)
 
 app.run(host='0.0.0.0', port=80,debug=True)
