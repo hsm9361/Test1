@@ -29,7 +29,7 @@
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../bigdata/flask/수업예제/20_미니프로젝트_화면" />
   </component>
   <component name="RunManager">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true">
@@ -89,6 +89,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="358" y="0" key="#main/0.0.1280.680@0.0.1280.680" timestamp="1581324080238" />
+    <state x="421" y="96" key="FileChooserDialogImpl" timestamp="1581381052284">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="421" y="96" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1581381052284" />
     <state width="1259" height="163" key="GridCell.Tab.0.bottom" timestamp="1581323924206">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
