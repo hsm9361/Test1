@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {%include 'include/lib.html'%}
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/volunteer.css') }}">
+</head>
+<body>
+    {%include 'include/header.html'%}
+    <div class="container mt-3">
+        <h2>자원봉사</h2>
+        <br>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#info">봉사안내</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#valan">자원봉사신청</a>
+            </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div id="info" class="container tab-pane active"><br>
+                <div class="img">
+                    <div class="content">
+                    <div>
+                        <h1>목적</h1>
+                        <p>자원봉사란 지역사회의 복지증진을 위해서
+자신의 능력과 시간을 대가없이 할애하고 헌신함으로써
+                            자발적으로 참여하고 돕는 활동입니다.</p>
+                    </div>
+                    </div>
+                    <div class="img-cover"></div>
+                 </div>
+            </div>
+            <div id="valan" class="container tab-pane fade"><br>
+                <p>*필수입력</p>
+                <form>
+                    <div class="container">
+                        <table class="table table-bordered">
+                        <tbody>
+				<tr>
+					<th>* 성명</th>
+					<td>
+						<input type="text" id="vn_nm" name="vn_nm" value="" class="essential sInput03" title="성명">
+					</td>
+					<th>* VMS ID</th>
+					<td>
+						<input type="text" id="vn_vms" name="vn_vms" value="" class="essential sInput03" title="VMS">
+					</td>
+				</tr>
+				<tr>
+					<th>* 생년월일</th>
+					<td colspan="3">
+						<input type="text" id="vn_birY" name="vn_birY" value="" class="essential sInput09" title="생년월일 - 연도" maxlength="4">년
+						<input type="text" id="vn_birM" name="vn_birM" value="" class="essential sInput09" title="생년월일 - 월" maxlength="2">월
+						<input type="text" id="vn_birD" name="vn_birD" value="" class="essential sInput09" title="생년월일 - 일" maxlength="2">일
+					</td>
+				</tr>
+				<tr>
+					<th>주소</th>
+					<td colspan="3">
+						<ul class="T_UL">
+							<li class="marBott10">
+								<input type="text" id="vn_zp" name="vn_zp" class="sInput09" value="" title="자원봉사자정보 > 우편번호" readonly="">&nbsp;&nbsp;
+								<input type="button" onclick="openZipcode('vn_zp', 'vn_addr');" value="우편번호검색" class="basicB">
+							</li>
+							<li>
+								<input type="text" id="vn_addr" name="vn_addr" class="sInput01" value="" title="자원봉사자정보 > 주소">
+							</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<th>* 휴대폰</th>
+					<td colspan="3">
+						<input type="text" id="vn_tel1" name="vn_tel1" value="" class="essential sInput09" title="휴대폰"> -
+						<input type="text" id="vn_tel2" name="vn_tel2" value="" class="essential sInput09" title="휴대폰"> -
+						<input type="text" id="vn_tel3" name="vn_tel3" value="" class="essential sInput09" title="휴대폰">
+					</td>
+				</tr>
+				<tr>
+					<th>* 참여동기</th>
+					<td colspan="3">
+						<input type="text" id="vn_cnt" name="vn_cnt" value="" class="essential sInput03" title="참여동기">
+					</td>
+				</tr>
+				<tr>
+					<th>* 희망분야</th>
+					<td colspan="3">
+						<input type="text" id="vn_cgr" name="vn_cgr" value="" class="essential sInput03" title="희망분야">
+					</td>
+				</tr>
+
+				<tr>
+					<th>* 활동주기</th>
+					<td colspan="3">
+						<ul class="ULS_RD">
+							<li>
+								<label for="vn_rc_1">
+									<input type="radio" class="essential" name="vn_rc" id="vn_rc_1" value="1" title="활동주기">
+									<span>비정기적</span>
+								</label>
+							</li>
+							<li>
+								<label for="vn_rc_2">
+									<input type="radio" class="essential" name="vn_rc" id="vn_rc_2" value="2" title="활동주기">
+									<span>정기적</span>
+									<input type="text" id="vn_rc_etc" name="vn_rc_etc" value="" class="sInput09" title="정기적" disabled="">회
+								</label>
+							</li>
+						</ul>
+					</td>
+				</tr>
+
+
+				<tr>
+					<th>* 희망시간</th>
+					<td colspan="3">
+						<input type="text" id="vn_tmd" name="vn_tmd" value="" class="essential sInput09" title="활동요일">요일 |
+						<input type="text" id="vn_tm" name="vn_tm" value="" class="essential sInput09" title="활동시간"> 시간
+					</td>
+				</tr>
+				<tr>
+					<th>남기고 싶은 말씀</th>
+					<td colspan="3">
+						<textarea name="vn_memo" id="vn_memo" class="sInput01 H100" title="남기고 싶은 말씀"></textarea>
+					</td>
+				</tr>
+			</tbody>
+                            </table>
+                    </div>
+                    <div class="row">
+                            <div class="col-12">
+                                <input type="submit" value="신청" class="btn btn-primary">
+                            </div>
+                        </div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

@@ -6,3 +6,4 @@ main_blue = Blueprint('main_blue', __name__)
 def index():
     html = render_template('main/index.html')
     return html
+
