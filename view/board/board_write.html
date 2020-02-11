@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {%include 'include/lib.html'%}
+</head>
+{%include 'include/header.html'%}
+
+
+<body>
+    <div class="container" style="margin-top:100px">
+        <h4 style="text-align: center;">공지사항</h4>
+        <div style="text-align: center;">
+            <h7><a href="/">홈</a> > 소통창구 > <a href="/board_list">공지사항</a></h7>
+        </div>
+
+
+
+    <div class="row" style='margin-top:30px'>
+        <div class="col-2"></div>
+        <div class="col-8">
+            <div class="container" role="main">
+                <h4 style="margin-top:10px">글쓰기</h4>
+                <form name="form" id="form" role="form" method="post"
+                      action="#" style="margin-top:20px">
+                    <div class="mb-3">
+                        <label for="board_title">제목</label>
+                        <input type="text" class="form-control" name="board_title" id="board_title">
+                    </div>
+                    <div class="mb-3">
+                        <label for="board_writer_name">작성자</label>
+                        <input type="text" class='form-control' id="board_writer_name" name="board_writer_name"
+                               disabled="disabled"/>
+                    </div>
+                    <div class="mb-3">
+                        <label for="board_content">내용</label>
+                        <textarea class="form-control" id="board_content" name="board_content"
+                                  style="height:300px; resize:none;"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="clearfix">
+                <div class="float-right">
+                    <button type="button" class="btn btn-primary" id="btnSave">저장</button>
+                    <a href="/board_list" class="btn btn-primary" id="btnList">목록</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-2"></div>
+    </div>
+    </div>
+</body>
+</html>
