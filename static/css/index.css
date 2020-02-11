@@ -1,0 +1,8 @@
+.carousel-inner img{
+    width: 80%;
+    overflow: hidden;
+
+  }
+.carousel-item{
+text-align: center;
+}
