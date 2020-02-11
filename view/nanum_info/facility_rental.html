@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {%include 'include/lib.html'%}
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/volunteer.css') }}">
+</head>
+<body>
+    {%include 'include/header.html'%}
+    <div class="container mt-3">
+        <h2>시설대관</h2>
+        <br>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#info">봉사안내</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#valan">자원봉사신청</a>
+            </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div id="info" class="container tab-pane active"><br>
+                <div class="img">
+                    <div class="content">
+                    <div>
+                        <h1>목적</h1>
+                        <p>자원봉사란 지역사회의 복지증진을 위해서
+자신의 능력과 시간을 대가없이 할애하고 헌신함으로써
+                            자발적으로 참여하고 돕는 활동입니다.</p>
+                    </div>
+                    </div>
+                    <div class="img-cover"></div>
+                 </div>
+            </div>
+            <div id="valan" class="container tab-pane fade"><br>
+                <p>*필수입력</p>
+                <form>
+                    <div class="container">
+                        <table class="table table-bordered">
+                        <tbody>
+				<tr>
+					<th>* 대관장소</th>
+					<td>
+						<ul class="ULS_RD type4">
+							<li>
+								<label for="rn_cgr_1">
+									<input type="radio" class="essential" name="rn_cgr" id="rn_cgr_1" value="1" title="대관장소 종류">
+									<span>지하강당</span>
+								</label>
+							</li>
+							<li>
+								<label for="rn_cgr_2">
+									<input type="radio" class="essential" name="rn_cgr" id="rn_cgr_2" value="2" title="대관장소 종류">
+									<span>꿈터사랑방</span>
+								</label>
+							</li>
+							<li>
+								<label for="rn_cgr_3">
+									<input type="radio" class="essential" name="rn_cgr" id="rn_cgr_3" value="3" title="대관장소 종류">
+									<span>회의실</span>
+								</label>
+							</li>
+							<li>
+								<label for="rn_cgr_4">
+									<input type="radio" class="essential" name="rn_cgr" id="rn_cgr_4" value="4" title="대관장소 종류">
+									<span>프로그램실</span>
+								</label>
+							</li>
+							<li>
+								<label for="rn_cgr_5">
+									<input type="radio" class="essential" name="rn_cgr" id="rn_cgr_5" value="5" title="대관장소 종류">
+									<span>라온한울실</span>
+								</label>
+							</li>
+							<li>
+								<label for="rn_cgr_6">
+									<input type="radio" class="essential" name="rn_cgr" id="rn_cgr_6" value="6" title="대관장소 종류">
+									<span>음악치료실</span>
+								</label>
+							</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<th>* 소속(학교명)</th>
+					<td>
+						<input type="text" id="rn_onm" name="rn_onm" value="" class="essential sInput08" title="소속(학교명)">
+					</td>
+				</tr>
+				<tr>
+					<th>* 방문인원</th>
+					<td>
+						총 <input type="text" id="rn_num" name="rn_num" value="" class="essential sInput09" title="방문인원"> 명
+					</td>
+				</tr>
+				<tr>
+					<th>* 이메일</th>
+					<td>
+						<input type="text" id="rn_email1" name="rn_email1" value="" class="essential sInput08" title="이메일"> @
+						<input type="text" id="rn_email2" name="rn_email2" value="" class="essential sInput08" title="이메일" readonly="">
+						<select class="selectEmail search-select" val="rn_email2">
+							<option value="">선택하세요</option>
+							<option value="naver.com">naver.com</option>
+							<option value="chol.com">chol.com</option>
+							<option value="dreamwiz.com">dreamwiz.com</option>
+							<option value="empal.com">empal.com</option>
+							<option value="freechal.com">freechal.com</option>
+							<option value="gmail.com">gmail.com</option>
+							<option value="hanafos.com">hanafos.com</option>
+							<option value="hanmail.net">hanmail.net</option>
+							<option value="hanmir.com">hanmir.com</option>
+							<option value="hitel.com">hitel.com</option>
+							<option value="hotmail.com">hotmail.com</option>
+							<option value="korea.com">korea.com</option>
+							<option value="lycos.co.kr">lycos.co.kr</option>
+							<option value="nate.com">nate.com</option>
+							<option value="netian.com">netian.com</option>
+							<option value="paran.com">paran.com</option>
+							<option value="yahoo.com">yahoo.com</option>
+							<option value="yahoo.co.kr">yahoo.co.kr</option>
+							<option value="input">직접입력</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<th>* 휴대폰</th>
+					<td>
+						<input type="text" id="rn_tel1" name="rn_tel1" value="" class="essential sInput09" title="휴대폰"> -
+						<input type="text" id="rn_tel2" name="rn_tel2" value="" class="essential sInput09" title="휴대폰"> -
+						<input type="text" id="rn_tel3" name="rn_tel3" value="" class="essential sInput09" title="휴대폰">
+					</td>
+				</tr>
+				<tr>
+					<th>* 비상연락처</th>
+					<td>
+						<input type="text" id="rn_tel4" name="rn_tel4" value="" class="essential sInput09" title="휴대폰"> -
+						<input type="text" id="rn_tel5" name="rn_tel5" value="" class="essential sInput09" title="휴대폰"> -
+						<input type="text" id="rn_tel6" name="rn_tel6" value="" class="essential sInput09" title="휴대폰">
+					</td>
+				</tr>
+				<tr>
+					<th>* 희망일시</th>
+					<td>
+						<input type="text" id="rn_dt" name="rn_dt" value="" class="essential sInput09 datepicker hasDatepicker" title="날짜">
+						<input type="text" id="rn_st" name="rn_st" value="" class="essential sInput09" title="시작 시간 > 시"> 시
+						<input type="text" id="rn_sm" name="rn_sm" value="" class="essential sInput09" title="시작 시간 > 분"> 분 ~
+						<input type="text" id="rn_et" name="rn_et" value="" class="essential sInput09" title="끝 시간 > 시"> 시
+						<input type="text" id="rn_em" name="rn_em" value="" class="essential sInput09" title="끝 시간 > 분"> 분
+					</td>
+				</tr>
+				<tr>
+					<th>방문목적</th>
+					<td>
+						<textarea name="rn_ga" id="rn_ga" class="sInput01 H100" title="방문목적"></textarea>
+					</td>
+				</tr>
+				<tr>
+					<th>기타사항</th>
+					<td>
+						<textarea name="rn_etc" id="rn_etc" class="sInput01 H100" title="기타사항"></textarea>
+					</td>
+				</tr>
+			</tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                            <div class="col-12">
+                                <input type="submit" value="신청" class="btn btn-primary">
+                            </div>
+                        </div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

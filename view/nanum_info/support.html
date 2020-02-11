@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {%include 'include/lib.html'%}
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/volunteer.css') }}">
+</head>
+<body>
+    {%include 'include/header.html'%}
+    <div class="container mt-3">
+        <h2>후원</h2>
+        <br>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#info">후원</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#valan">후원신청</a>
+            </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div id="info" class="container tab-pane active"><br>
+                <div class="img">
+                    <div class="content">
+                    <div>
+                        <h1>목적</h1>
+                        <p>자원봉사란 지역사회의 복지증진을 위해서
+자신의 능력과 시간을 대가없이 할애하고 헌신함으로써
+                            자발적으로 참여하고 돕는 활동입니다.</p>
+                    </div>
+                    </div>
+                    <div class="img-cover"></div>
+                 </div>
+            </div>
+            <div id="valan" class="container tab-pane fade"><br>
+                <p>*필수입력</p>
+                <form>
+                    <div class="container">
+                        <table class="table table-bordered">
+                        <tbody>
+				<tr>
+					<th>* 성명</th>
+					<td>
+						<input type="text" id="sp_nm" name="sp_nm" value="" class="essential sInput03" title="성명">
+					</td>
+					<th>* 성별</th>
+					<td>
+						<ul class="ULS_RD type2">
+							<li>
+								<label for="sp_gnr_1">
+									<input type="radio" class="essential" name="sp_gnr" id="sp_gnr_1" value="1" title="성별">
+									<span>남</span>
+								</label>
+							</li>
+							<li>
+								<label for="sp_gnr_2">
+									<input type="radio" class="essential" name="sp_gnr" id="sp_gnr_2" value="2" title="성별">
+									<span>여</span>
+								</label>
+							</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<th>* 생년월일</th>
+					<td colspan="3">
+						<input type="text" id="sp_birY" name="sp_birY" value="" class="essential sInput09" title="생년월일 - 연도" maxlength="4">년
+						<input type="text" id="sp_birM" name="sp_birM" value="" class="essential sInput09" title="생년월일 - 월" maxlength="2">월
+						<input type="text" id="sp_birD" name="sp_birD" value="" class="essential sInput09" title="생년월일 - 일" maxlength="2">일
+					</td>
+				</tr>
+				<tr>
+					<th>* 이메일</th>
+					<td colspan="3">
+						<input type="text" id="sp_email1" name="sp_email1" value="" class="essential sInput08" title="이메일"> @
+						<input type="text" id="sp_email2" name="sp_email2" value="" class="essential sInput08" title="이메일" readonly="">
+						<select class="selectEmail search-select" val="sp_email2">
+							<option value="">선택하세요</option>
+							<option value="naver.com">naver.com</option>
+							<option value="chol.com">chol.com</option>
+							<option value="dreamwiz.com">dreamwiz.com</option>
+							<option value="empal.com">empal.com</option>
+							<option value="freechal.com">freechal.com</option>
+							<option value="gmail.com">gmail.com</option>
+							<option value="hanafos.com">hanafos.com</option>
+							<option value="hanmail.net">hanmail.net</option>
+							<option value="hanmir.com">hanmir.com</option>
+							<option value="hitel.com">hitel.com</option>
+							<option value="hotmail.com">hotmail.com</option>
+							<option value="korea.com">korea.com</option>
+							<option value="lycos.co.kr">lycos.co.kr</option>
+							<option value="nate.com">nate.com</option>
+							<option value="netian.com">netian.com</option>
+							<option value="paran.com">paran.com</option>
+							<option value="yahoo.com">yahoo.com</option>
+							<option value="yahoo.co.kr">yahoo.co.kr</option>
+							<option value="input">직접입력</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<th>* 휴대폰</th>
+					<td colspan="3">
+						<input type="text" id="sp_tel1" name="sp_tel1" value="" class="essential sInput09" title="휴대폰"> -
+						<input type="text" id="sp_tel2" name="sp_tel2" value="" class="essential sInput09" title="휴대폰"> -
+						<input type="text" id="sp_tel3" name="sp_tel3" value="" class="essential sInput09" title="휴대폰">
+					</td>
+				</tr>
+				<tr>
+					<th>주소</th>
+					<td colspan="3">
+						<ul class="T_UL">
+							<li class="marBott10">
+								<input type="text" id="sp_zp" name="sp_zp" class="sInput09" value="" title="자원봉사자정보 > 우편번호" readonly="">&nbsp;&nbsp;
+								<input type="button" onclick="openZipcode('sp_zp', 'sp_addr');" value="우편번호검색" class="basicB">
+							</li>
+							<li>
+								<input type="text" id="sp_addr" name="sp_addr" class="sInput01" value="" title="자원봉사자정보 > 주소">
+							</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<th>우편물수령주소</th>
+					<td colspan="3">
+						<ul class="ULS_CH">
+							<li>
+								<label for="sp_addrChk">
+									<input type="checkbox" class="addrCP" name="sp_addrChk" id="sp_addrChk" value="1" title="상단 주소와 동일 문제 종류" onclick="chkA();">
+									<span>상단 주소와 동일 (서울시립대학교종합사회복지관 소식지와 연말정산을 위한 기부금 영수증 수령을 위한 주소를 입력해 주시기 바랍니다.)</span>
+								</label>
+							</li>
+						</ul>
+						<ul class="T_UL">
+							<li class="marBott10">
+								<input type="text" id="sp_zp2" name="sp_zp2" class="sInput09" value="" title="자원봉사자정보 > 우편번호" readonly="">&nbsp;&nbsp;
+								<input type="button" onclick="openZipcode('sp_zp2', 'sp_addr2');" value="우편번호검색" class="basicB">
+							</li>
+							<li>
+								<input type="text" id="sp_addr2" name="sp_addr2" class="sInput01" value="" title="자원봉사자정보 > 주소">
+							</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<th>* 후원종류</th>
+					<td colspan="3">
+						<ul class="ULS_RD">
+							<li>
+								<label for="sp_cgr_1">
+									<input type="radio" class="essential" name="sp_cgr" id="sp_cgr_1" value="1" title="후원종류">
+									<span>일반후원 : 전반적인 복지사업 운영기금을 위해</span>
+								</label>
+							</li>
+							<li>
+								<label for="sp_cgr_2">
+									<input type="radio" class="essential" name="sp_cgr" id="sp_cgr_2" value="2" title="후원종류">
+									<span>결연후원 : 도움이 필요한 가정의 지원을 위해</span>
+								</label>
+							</li>
+							<li>
+								<label for="sp_cgr_3">
+									<input type="radio" class="essential" name="sp_cgr" id="sp_cgr_3" value="3" title="후원종류">
+									<span>지정후원 :</span>
+									<input type="text" id="sp_cgr_etc" name="sp_cgr_etc" value="" class="sInput09" title="지정후원" disabled="">을 위해 (특정사업이나 행사를 위한 지원시)
+								</label>
+							</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<th>* 후원일시</th>
+					<td colspan="3">
+						<ul class="ULS_RD type">
+							<li>
+								<label for="sp_dt_1">
+									<input type="radio" class="essential" name="sp_dt" id="sp_dt_1" value="1" title="후원일시">
+									<span>정기</span>
+								</label>
+							</li>
+							<li>
+								<label for="sp_dt_2">
+									<input type="radio" class="essential" name="sp_dt" id="sp_dt_2" value="2" title="후원일시">
+									<span>일시</span>
+								</label>
+							</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<th>* 후원방법</th>
+					<td colspan="3">
+						<ul class="ULS_RD type3">
+							<li>
+								<label for="sp_rt_1">
+									<input type="radio" class="essential" name="sp_rt" id="sp_rt_1" value="1" title="후원종류">
+									<span>통장입금(정기)</span>
+								</label>
+							</li>
+							<li>
+								<label for="sp_rt_2">
+									<input type="radio" class="essential" name="sp_rt" id="sp_rt_2" value="2" title="후원종류">
+									<span>일시적 </span>
+									<input type="text" id="sp_rt_etc" name="sp_rt_etc" value="" class="sInput06" title="일시적 후원금 입력란" disabled="">원을 후원
+								</label>
+							</li>
+							<li>
+								<label for="sp_rt_3">
+									<input type="radio" class="essential" name="sp_rt" id="sp_rt_3" value="3" title="후원종류">
+									<span>CMS</span>
+								</label>
+							</li>
+							<li>
+								<label for="sp_rt_4">
+									<input type="radio" class="essential" name="sp_rt" id="sp_rt_4" value="4" title="후원종류">
+									<span>지로이용</span>
+								</label>
+							</li>
+							<li>
+								<label for="sp_rt_5">
+									<input type="radio" class="essential" name="sp_rt" id="sp_rt_5" value="5" title="후원종류">
+									<span>직접 전달</span>
+								</label>
+							</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<th>* 후원금액</th>
+					<td colspan="3">
+						<ul class="ULS_RD type4">
+							<li>
+								<label for="sp_py_1">
+									<input type="radio" class="essential" name="sp_py" id="sp_py_1" value="1" title="후원금액">
+									<span>월 5,000원</span>
+								</label>
+							</li>
+							<li>
+								<label for="sp_py_2">
+									<input type="radio" class="essential" name="sp_py" id="sp_py_2" value="2" title="후원금액">
+									<span>월 10,000원 </span>
+								</label>
+							</li>
+							<li>
+								<label for="sp_py_3">
+									<input type="radio" class="essential" name="sp_py" id="sp_py_3" value="3" title="후원금액">
+									<span>월 20,000원</span>
+								</label>
+							</li>
+							<li>
+								<label for="sp_py_4">
+									<input type="radio" class="essential" name="sp_py" id="sp_py_4" value="4" title="후원금액">
+									<span>월 50,000원</span>
+								</label>
+							</li>
+							<li>
+								<label for="sp_py_5">
+									<input type="radio" class="essential" name="sp_py" id="sp_py_5" value="5" title="후원금액">
+									<span>월 100,000원</span>
+								</label>
+							</li>
+							<li>
+								<label for="sp_py_6">
+									<input type="radio" class="essential" name="sp_py" id="sp_py_6" value="6" title="후원금액">
+									<span>기타</span>
+									<input type="text" id="sp_py_etc" name="sp_py_etc" value="" class="sInput05" title="후원금액" disabled="">
+								</label>
+							</li>
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						CMS<br>
+						<span>* 매월 후원자의 통장에서 자동인출 됩니다</span>
+					</th>
+					<td colspan="3">
+						<table summary="CMS" cellspacing="0" cellpadding="0" border="0" class="C_ListTb">
+							<caption>CMS</caption>
+							<colgroup>
+								<col width="15%">
+								<col width="*">
+								<col width="15%">
+								<col width="*">
+							</colgroup>
+							<tbody>
+								<tr>
+									<th>계좌번호</th>
+									<td colspan="3">
+										<input type="text" name="sp_num" id="sp_num" value="" class="sInput05 essential" title="계좌번호" maxlength="20">
+										<span>* '-' 포함 입력</span>
+									</td>
+								</tr>
+								<tr>
+									<th>예금주명</th>
+									<td>
+										<input type="text" name="sp_dpst" id="sp_dpst" value="" class="sInput05 essential" title="예금주명" maxlength="10">
+									</td>
+									<th>거래은행</th>
+									<td>
+										<input type="text" name="sp_bk" id="sp_bk" value="" class="sInput05 essential" title="거래은행" maxlength="20">
+									</td>
+								</tr>
+								<tr>
+									<th>출금일</th>
+									<td colspan="3">
+										<ul class="ULS_RD type4">
+											<li>
+												<label for="sp_wd_1">
+													<input type="radio" class="essential" name="sp_wd" id="sp_wd_1" value="1" title="출금일">
+													<span>10일</span>
+												</label>
+											</li>
+											<li>
+												<label for="sp_wd_2">
+													<input type="radio" class="essential" name="sp_wd" id="sp_wd_2" value="2" title="출금일">
+													<span>25일</span>
+												</label>
+											</li>
+										</ul>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<th>* 후원경로</th>
+					<td colspan="3">
+						<ul class="ULS_RD type4">
+							<li>
+								<label for="sp_way_1">
+									<input type="radio" class="essential" name="sp_way" id="sp_way_1" value="1" title="후원경로">
+									<span>지인의 권유</span>
+								</label>
+							</li>
+							<li>
+								<label for="sp_way_3">
+									<input type="radio" class="essential" name="sp_way" id="sp_way_3" value="3" title="후원경로">
+									<span>홍보물이나 매체를 통해</span>
+								</label>
+							</li>
+							<li>
+								<label for="sp_way_4">
+									<input type="radio" class="essential" name="sp_way" id="sp_way_4" value="4" title="후원경로">
+									<span>직원의 권유</span>
+								</label>
+							</li>
+							<li>
+								<label for="sp_way_5">
+									<input type="radio" class="essential" name="sp_way" id="sp_way_5" value="5" title="후원경로">									<span>기타 </span>
+									<input type="text" id="sp_way_etc" name="sp_way_etc" value="" class="sInput06" title="후원경로 기타 입력란" disabled="">
+								</label>
+							</li>
+						</ul>
+					</td>
+				</tr>
+			</tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                            <div class="col-12">
+                                <input type="submit" value="신청" class="btn btn-primary">
+                            </div>
+                        </div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

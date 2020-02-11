@@ -1,0 +1,41 @@
+    .img{
+        position: relative;
+
+        background-image: url('../img/flower.jpg');
+        height: 60vh;
+        background-size: cover;
+    }
+
+    .img-cover{
+       position: absolute;
+       height: 100%;
+       width: 100%;
+       //background-color: rgba(0, 0, 0, 0.4);
+       z-index:1;
+    }
+    .content{
+    background-color: rgba(0, 0, 0, 0.4);
+    }
+    .img .content{
+         position: absolute;
+         top:50%;
+         left:50%;
+         transform: translate(-50%, -50%);
+         color: white;
+         z-index: 2;
+         text-align: center;
+    }
+
+    .col-4{
+        border-bottom: solid #cccccc 1px;
+        border-right: solid #cccccc 1px;
+        border-left: solid #cccccc 1px;
+    }
+    .col-8{
+        border-bottom: solid #cccccc 1px;
+        border-right: solid #cccccc 1px;
+    }
+    .row{
+        margin: 5px 10px;
+        text-align: center;
+    }
