@@ -10,3 +10,8 @@ def log_in():
 def mypage():
     html = render_template('user/mypage.html')
     return html
+
+@user_blue.route('/user_join')
+def join():
+    html = render_template('user/user_join.html')
+    return html

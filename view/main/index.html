@@ -8,7 +8,6 @@
 </head>
 <body>
     {%include 'include/header.html'%}
-    <h1>인덱스</h1>
 <div id="demo" class="carousel slide" data-ride="carousel">
   <ul class="carousel-indicators">
     <li data-target="#demo" data-slide-to="0" class="active"></li>
@@ -17,21 +16,21 @@
   </ul>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="{{url_for('static', filename='img/main.jpg') }}" alt="Los Angeles" width="1000" height="300">
+      <img src="{{url_for('static', filename='img/main.jpg') }}" alt="Los Angeles" width="800" height="400">
       <div class="carousel-caption">
         <h3>Los Angeles</h3>
         <p>We had such a great time in LA!</p>
       </div>
     </div>
     <div class="carousel-item">
-      <img src="{{url_for('static', filename='img/main2.jpg') }}" alt="Chicago" width="1000" height="300">
+      <img src="{{url_for('static', filename='img/main2.jpg') }}" alt="Chicago" width="800" height="400">
       <div class="carousel-caption">
         <h3>Chicago</h3>
         <p>Thank you, Chicago!</p>
       </div>
     </div>
     <div class="carousel-item">
-      <img src="{{url_for('static', filename='img/main3.jpg') }}" alt="New York" width="1000" height="300">
+      <img src="{{url_for('static', filename='img/main3.jpg') }}" alt="New York" width="800" height="400">
       <div class="carousel-caption">
         <h3>New York</h3>
         <p>We love the Big Apple!</p>

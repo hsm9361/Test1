@@ -12,3 +12,8 @@ def way():
 def hello():
     html = render_template('intro/hello.html')
     return html
+
+@intro_blue.route('/regional_feature')
+def regional_feature():
+    html = render_template('intro/regional_feature.html')
+    return html

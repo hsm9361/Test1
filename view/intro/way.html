@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <title>Title</title>
     {%include 'include/lib.html'%}
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/way.css') }}">
+    <script src="{{url_for('static', filename='javascript/way.js') }}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeqtacIBrD5AciLCSWfUw3AeH1BEKnlWM&callback=initMap"
+    async defer></script>
 </head>
 <body>
     {%include 'include/header.html'%}
@@ -16,31 +20,15 @@
 
         <div class="row">
             <div class="col-12">
-                <style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      #map {
-        height: 100%;
-      }
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-    </style>
-<div id="map"></div>
-    <script>
-      var map;
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 37.4525268, lng: 127.1326255},
-          zoom: 12
-        });
-      }
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeqtacIBrD5AciLCSWfUw3AeH1BEKnlWM&callback=initMap"
-    async defer></script>
+                <div id="map"></div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <h1>주소</h1>
+                <h1>전화</h1>
+                <h1>이메일</h1>
             </div>
         </div>
     </div>

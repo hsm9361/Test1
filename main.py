@@ -4,6 +4,7 @@ from main import index
 from user import user
 from intro import intro
 from nanum_info import nanum_info
+from lecture import lecture
 
 
 app = Flask(__name__)
@@ -18,5 +19,6 @@ app.register_blueprint(board.board_blue)
 app.register_blueprint(user.user_blue)
 app.register_blueprint(intro.intro_blue)
 app.register_blueprint(nanum_info.nanum_info_blue)
+app.register_blueprint(lecture.lecture_blue)
 
 app.run(host='0.0.0.0', port=80,debug=True)
