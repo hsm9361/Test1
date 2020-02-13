@@ -1,0 +1,143 @@
+create database welfare; -- 데이터베이스 생성
+use welfare; -- 데이터베이스 사용
+
+-- 회원정보 테이블
+create table user_table(
+	user_idx int auto_increment, -- 유저 고유번호
+    user_id varchar(50) not null, -- 유저 id
+    user_pw varchar(50) not null, -- password
+    user_email varchar(100), -- 이메일주소
+    user_address varchar(200), -- 집주소
+    user_phone varchar(12), -- 휴대폰번호
+    user_type char(2),  -- A이면 일반회원 B이면 관리자계정
+
+    constraint user_pk primary key(user_idx)
+);
+
+-- 게시판 타입
+create table board_type(
+	board_type_idx int not null auto_increment,
+    board_name varchar(50) not null,  -- 공지사항, 게시판
+    constraint board_type_pk primary key(board_type_idx),
+    constraint board_type_qu unique(board_name)
+);
+
+-- 게시판 컨텐츠를 저장하는 DB
+create table board_content(
+	bc_idx int not null auto_increment, -- 컨텐츠 번호
+    bc_subject varchar(500) not null, -- 제목
+    bc_writer_idx int not null, -- 작성자의 고유번호
+    bc_date date not null, -- 작성일
+    bc_content varchar(500) not null, -- 내용
+    board_type_idx int not null, -- 게시판 유형
+    constraint board_content_pk primary key(bc_idx),
+    constraint board_content_fk1 foreign key(bc_writer_idx)
+		references user_table(user_idx),
+	constraint board_content_fk2 foreign key(board_type_idx)
+		references board_type(board_type_idx)
+);
+
+-- 강좌테이블
+create table lecture_table(
+	lecture_idx int auto_increment, -- 고유번호
+    lecture_name varchar(100) not null, -- 강좌명
+    lecture_enrollment int not null, -- 현재 등록수
+    lecture_capacity int not null, -- 수용인원
+    lecture_target varchar(20) not null, -- 대상자 : 누구나, 60대이상
+    lecture_price int, -- 가격
+    lecture_teacher varchar(20) not null, -- 강사
+    lecture_deadline date not null, -- 신청마감일
+    lecture_start date, -- 강의 시작일
+    lecture_end date, -- 강의 마감일
+    constraint lecture_pk primary key(lecture_idx)
+);
+
+-- 강좌 예약 테이블
+create table lecture_reservation_table(
+	lecture_idx int auto_increment, -- 예약번호
+    user_idx int, -- 유저 고유 번호
+    reservation_time date, -- 예약(신청)시간
+    constraint lecture_reservation_pk primary key(lecture_idx),
+    constraint lecture_reservation_fk1 foreign key(lecture_idx)
+		references lecture_table(lecture_idx),
+	constraint lecture_reservation_fk2 foreign key(user_idx)
+		references user_table(user_idx)
+);
+
+-- 자원봉사 테이블
+create table volunteer_table(
+	volunteer_idx int auto_increment, -- 자원봉사고유번호
+    volunteer_name varchar(50) not null, -- 자원봉사자 이름
+    volunteer_phone varchar(25) not null, -- 휴대폰번호
+    volunteer_motivation varchar(100), -- 지원동기
+    volunteer_hope varchar(100), -- 희망분야
+    volunteer_regular char(5), -- 정기/비정기 유무
+    constraint volunteer_table_pk primary key(volunteer_idx)
+);
+
+-- 자원봉사 정기 테이블
+create table regular_support(
+	rs_idx int auto_increment, -- 고유번호
+    rs_volunteer_idx int not null, -- 자원봉사번호
+    rs_range int not null, -- 기간 ex) 3개월 단위로 저장됨 최대 24개월
+    rs_day varchar(20) not null, -- 월, 수, 금 선택한 요일
+    rs_time varchar(10) not null, -- 가능한 시간 몇시간 가능한지
+    constraint regular_support_pk primary key(rs_idx),
+    constraint regular_support_fk1 foreign key(rs_volunteer_idx)
+		references volunteer_table(volunteer_idx) -- 자원봉사테이블의 고유id값과 연결하기위해서
+);
+
+-- 비정기봉사 테이블
+create table not_regular_support(
+	nrs_idx int auto_increment, -- 고유번호
+    nrs_volunteer_idx int not null, -- 자원봉사번호
+    nrs_date date not null, -- 할수있는 날짜
+    nrs_time varchar(50) not null, -- 가능한 시간대
+    constraint not_regular_support_pk primary key(nrs_idx),
+    constraint not_regular_support_fk1 foreign key(nrs_volunteer_idx)
+		references volunteer_table(volunteer_idx) -- 자원봉사테이블의 고유id값과 연결하기위해서
+);
+
+-- 후원 테이블
+create table support_table(
+	support_idx int auto_increment, -- 고유번호
+    support_name varchar(50) not null, -- 이름
+    support_gender varchar(2), -- 성별
+    support_birthday date, -- 생년월일
+    support_phone varchar(25), -- 휴대폰번호
+    support_range int, -- 후원기간 3개월단위, 24개월까지
+    support_donation int, -- 기부금
+    support_account varchar(30), -- 계좌
+    support_account_name varchar(20), -- 예금주명
+    support_bank_name varchar(20), -- 거래은행
+    support_withdrawal date, -- 출금일
+    constraint support_table_pk primary key(support_idx)
+);
+
+-- 시설대관 테이블
+
+create table facility_rental_table(
+	fr_idx int auto_increment, -- 고유번호
+    fr_room char(2) not null, -- 대관장소 번호
+    fr_user_name varchar(50) not null, -- 예약자 명
+    fr_visitors int not null, -- 방문자수
+    fr_phone varchar(25) not null, -- 연락처
+    fr_email varchar(100), -- 이메일
+    fr_hope_day date, -- 희망일
+    fr_hope_time int, -- 희망 시간대
+    constraint facility_rental_table_pk primary key(fr_idx),
+    constraint facility_rental_table_fk1 foreign key(fr_hope_time)
+		references fr_time_table(fr_time_idx) --
+);
+
+create table room_type_table(
+	room_idx int auto_increment, -- 고유번호
+    room_name varchar(30) not null, -- 대관장소 명
+    constraint room_type_table_pk primary key(room_idx)
+);
+
+create table fr_time_table(
+	fr_time_idx int auto_increment, -- 고유번호
+    fr_time varchar(30) not null, -- 대관시간
+    constraint fr_time_table_pk primary key(fr_time_idx)
+);
