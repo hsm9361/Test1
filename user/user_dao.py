@@ -37,3 +37,4 @@ def login_check(user_id,user_pw):
         user_type = result[2]
         conn.close()
         return user_idx
+

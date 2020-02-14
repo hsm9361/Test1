@@ -50,3 +50,18 @@ def user_login_pro():
 
     # html = render_template('main/index.html')
     # return html
+
+@user_blue.route('/user_ouet', methods=['post'])
+def user_logout():
+    user_id = request.form.get('user_id')
+    user_pw = request.form.get('user_pw')
+
+    # print(user_name,user_id,user_pw,user_email)
+    result=user_dao.login_check(user_id,user_pw)
+
+    if result == 'No' :
+        return 'NO'
+    else :
+        session['login']='YES'
+        session['user_idx'] = result
+        return 'YES'

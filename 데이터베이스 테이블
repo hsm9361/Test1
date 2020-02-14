@@ -15,7 +15,7 @@ create table user_table(
     user_email varchar(100), -- 이메일주소
     user_address varchar(200), -- 집주소
     user_phone varchar(12), -- 휴대폰번호
-    user_type char(2),  -- A이면 일반회원 B이면 관리자계정
+    user_type char(2) not null,  -- A이면 일반회원 B이면 관리자계정
 
     constraint user_pk primary key(user_idx)
 );
@@ -51,7 +51,7 @@ create table board_content(
 
 -- 강좌테이블
 create table lecture_table(
-	lecture_idx int auto_increment, -- 고유번호
+	lecture_idx int auto_increment, -- 고유(강좌)번호
     lecture_name varchar(100) not null, -- 강좌명
     lecture_enrollment int not null, -- 현재 등록수
     lecture_capacity int not null, -- 수용인원
@@ -66,10 +66,11 @@ create table lecture_table(
 
 -- 강좌 예약 테이블
 create table lecture_reservation_table(
-	lecture_idx int auto_increment, -- 예약번호
-    user_idx int, -- 유저 고유 번호
+	reservation_idx int auto_increment, -- 예약번호
+    lecture_idx int not null, -- 강좌번호
+    user_idx int not null, -- 유저 고유 번호
     reservation_time date, -- 예약(신청)시간
-    constraint lecture_reservation_pk primary key(lecture_idx),
+    constraint lecture_reservation_pk primary key(reservation_idx),
     constraint lecture_reservation_fk1 foreign key(lecture_idx)
 		references lecture_table(lecture_idx),
 	constraint lecture_reservation_fk2 foreign key(user_idx)
@@ -155,7 +156,12 @@ create table fr_time_table(
     fr_time varchar(30) not null, -- 대관시간
     constraint fr_time_table_pk primary key(fr_time_idx)
 );
+<<<<<<< HEAD
+
+
+=======
 select * from user_table;
 
 insert into user_type_table(user_type_code, user_title)values('A','일반회원');
 insert into user_type_table(user_type_code, user_title)values('B','관리자계정');
+>>>>>>> f537d1fca8959242e4a37cd04ee6caab1f770221
