@@ -10,9 +10,9 @@
 
 <body>
     <div class="container" style="margin-top:100px;margin-bottom:100px">
-        <h4 style="text-align: center;">공지사항</h4>
+        <h4 style="text-align: center;">자유게시판 글쓰기</h4>
         <div style="text-align: center;">
-            <h7><a href="/">홈</a> > 문화마당 > <a href="/board_list">공지사항</a></h7>
+            <h7><a href="/">홈</a> > 문화마당 > <a href="/free_list">자유게시판</a></h7>
         </div>
 
 
@@ -21,32 +21,32 @@
         <div class="col-2"></div>
         <div class="col-8">
             <div class="container" role="main">
-                <h7 style="margin-top:10px">공지사항 수정하기</h7>
-                <form name="board_info_idx" id="board_form" role="form" method="post" enctype="multipart/form-data"
+                <h7 style="margin-top:10px">공지사항 글쓰기</h7>
+                <form name="free_info_idx" id="free_form" role="form" method="post" enctype="multipart/form-data"
                       action="#" style="margin-top:20px">
                     <div class="form-group">
-                        <label for="board_title">제목</label>
-                        <input type="text" class="form-control" name="board_title" id="board_title">
+                        <label for="free_title">제목</label>
+                        <input type="text" class="form-control" name="free_title" id="free_title">
                     </div>
                     <div class="form-group">
-                        <label for="board_writer_name">작성자</label>
-                        <input type="text" class='form-control' id="board_writer_name" name="board_writer_name"
+                        <label for="free_writer_name">작성자</label>
+                        <input type="text" class='form-control' id="free_writer_name" name="free_writer_name"
                                disabled="disabled"/>
                     </div>
                     <div class="form-group">
-                        <label for="board_content">내용</label>
-                        <textarea class="form-control" id="board_content" name="board_content"
+                        <label for="free_content">내용</label>
+                        <textarea class="form-control" id="free_content" name="free_content"
                                   style="height:300px; resize:none;"></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="board_image">이미지 첨부</label>
-                        <input type="file" class="form-control" id="board_image" name="board_image"
+                        <label for="free_image">이미지 첨부</label>
+                        <input type="file" class="form-control" id="free_image" name="free_image"
                                accept="img/*"/>
                     </div>
                     <div class="form-group">
                         <div class="float-right">
                             <button type="button" class="btn btn-primary" id="btnSave">저장</button>
-                            <a href="/board_list" class="btn btn-primary" id="btnList">목록</a>
+                            <a href="/free_list" class="btn btn-primary" id="btnList">목록</a>
                         </div>
                     </div>
 
