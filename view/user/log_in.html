@@ -5,6 +5,35 @@
     <title>Title</title>
     {%include 'include/lib.html'%}
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/log_in.css') }}">
+    <script>
+    //  로그인 처리 함수
+    function check(){
+        user_id = $("#user_id").val()
+        user_pw = $("#user_pw").val()
+
+        param = {
+            user_id : user_id,
+            user_pw : user_pw
+        }
+
+        $.ajax({
+            url : 'user_login_pro',
+            type : 'post',
+            dataType : 'text',
+            data : param,
+            success : function(result){
+                if(result.trim() == 'YES'){
+                    location.href = '/'
+                }else {
+                    alert('로그인에 실패하였습니다')
+                    $("#user_id").val('')
+                    $("#user_pw").val('')
+                    $("#user_id").focus()
+                }
+            }
+        })
+        }
+    </script>
 </head>
 <body>
 {%include 'include/header.html'%}
@@ -13,7 +42,7 @@
             <div class="col-4"></div>
             <div class="col-4">
                 <div class="log_in">나눔복지관</div>
-                <form action="#" method="post">
+                <form action="/user_login_pro" method="post">
                     <div class="form-group">
                         <input type="text" name="user_id" id="user_id" class="form-control" placeholder="아이디"/>
                     </div>
@@ -25,7 +54,7 @@
                     <div class="form-group">
                         <div class="clearfix">
                             <div class="float-right">
-                                <button type="button" class="btn btn-primary">로그인</button>
+                                <button type="button" class="btn btn-primary" onclick="check()">로그인</button>
                             </div>
                         </div>
                     </div>

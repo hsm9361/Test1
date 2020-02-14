@@ -1,10 +1,16 @@
+
 create database welfare; -- 데이터베이스 생성
 use welfare; -- 데이터베이스 사용
+drop database welfare;
 
+set foreign_key_checks = 0;
+drop table user_table;
+set foreign_key_checks = 1;
 -- 회원정보 테이블
 create table user_table(
 	user_idx int auto_increment, -- 유저 고유번호
     user_id varchar(50) not null, -- 유저 id
+    user_name varchar(25) not null, -- 유저 이름
     user_pw varchar(50) not null, -- password
     user_email varchar(100), -- 이메일주소
     user_address varchar(200), -- 집주소
@@ -12,6 +18,12 @@ create table user_table(
     user_type char(2) not null,  -- A이면 일반회원 B이면 관리자계정
 
     constraint user_pk primary key(user_idx)
+);
+
+create table user_type_table(
+	user_type_code char(2),
+    user_title varchar(25),
+    constraint user_type_table_pk primary key(user_type_code)
 );
 
 -- 게시판 타입
@@ -127,12 +139,14 @@ create table facility_rental_table(
     fr_hope_day date, -- 희망일
     fr_hope_time int, -- 희망 시간대
     constraint facility_rental_table_pk primary key(fr_idx),
-    constraint facility_rental_table_fk1 foreign key(fr_hope_time)
+    constraint facility_rental_table_fk1 foreign key(fr_room)
+		references room_type_table(room_idx),
+    constraint facility_rental_table_fk2 foreign key(fr_hope_time)
 		references fr_time_table(fr_time_idx) --
 );
 
 create table room_type_table(
-	room_idx int auto_increment, -- 고유번호
+	room_idx char(2), -- 고유번호
     room_name varchar(30) not null, -- 대관장소 명
     constraint room_type_table_pk primary key(room_idx)
 );
@@ -142,5 +156,12 @@ create table fr_time_table(
     fr_time varchar(30) not null, -- 대관시간
     constraint fr_time_table_pk primary key(fr_time_idx)
 );
+<<<<<<< HEAD
 
 
+=======
+select * from user_table;
+
+insert into user_type_table(user_type_code, user_title)values('A','일반회원');
+insert into user_type_table(user_type_code, user_title)values('B','관리자계정');
+>>>>>>> f537d1fca8959242e4a37cd04ee6caab1f770221
