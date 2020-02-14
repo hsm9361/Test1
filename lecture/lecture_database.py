@@ -22,6 +22,8 @@ def add_user(lecture_idx, user_idx):
 # 신청받으면 db에서 len함수나 count로 인원 수 표시
 
 # 중복확인 여부 검사
+# 해당 user_idx가 같은 강의에 신청한다면 창 띄우기
+# 해당 user_idx가 html에 접속한다면 버튼 띄우지 않기.
 def check_user_id(lecture_idx, user_idx):
     conn = database.get_connection()
 
