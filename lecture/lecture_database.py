@@ -1,4 +1,4 @@
-from common import database
+from db import database
 
 # 강좌 정보를 보여주는 함수 => 그냥 DB에서 가져오면 된다.
 # 변경되는 사항을 함수 만들기
