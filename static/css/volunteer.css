@@ -39,3 +39,12 @@
         margin: 5px 10px;
         text-align: center;
     }
+
+    #valan > form > div.container > table > tbody > tr:nth-child(1) > th{
+        width:20%;
+    }
+
+    .table-bordered th{
+        vertical-align: middle;
+        text-align: center;
+    }

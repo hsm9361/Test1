@@ -5,6 +5,8 @@
     <title>Title</title>
     {%include 'include/lib.html'%}
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/volunteer.css') }}">
+	<script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
+	<script src="{{url_for('static', filename='javascript/volunteer.js') }}"></script>
 </head>
 <body>
     {%include 'include/header.html'%}
@@ -120,7 +122,7 @@
 						<ul class="T_UL">
 							<li class="marBott10">
 								<input type="text" id="sp_zp" name="sp_zp" class="sInput09" value="" title="자원봉사자정보 > 우편번호" readonly="">&nbsp;&nbsp;
-								<input type="button" onclick="openZipcode('sp_zp', 'sp_addr');" value="우편번호검색" class="basicB">
+								<input type="button" onclick="openZipSearch();" value="우편번호검색" class="basicB">
 							</li>
 							<li>
 								<input type="text" id="sp_addr" name="sp_addr" class="sInput01" value="" title="자원봉사자정보 > 주소">
@@ -128,28 +130,7 @@
 						</ul>
 					</td>
 				</tr>
-				<tr>
-					<th>우편물수령주소</th>
-					<td colspan="3">
-						<ul class="ULS_CH">
-							<li>
-								<label for="sp_addrChk">
-									<input type="checkbox" class="addrCP" name="sp_addrChk" id="sp_addrChk" value="1" title="상단 주소와 동일 문제 종류" onclick="chkA();">
-									<span>상단 주소와 동일 (서울시립대학교종합사회복지관 소식지와 연말정산을 위한 기부금 영수증 수령을 위한 주소를 입력해 주시기 바랍니다.)</span>
-								</label>
-							</li>
-						</ul>
-						<ul class="T_UL">
-							<li class="marBott10">
-								<input type="text" id="sp_zp2" name="sp_zp2" class="sInput09" value="" title="자원봉사자정보 > 우편번호" readonly="">&nbsp;&nbsp;
-								<input type="button" onclick="openZipcode('sp_zp2', 'sp_addr2');" value="우편번호검색" class="basicB">
-							</li>
-							<li>
-								<input type="text" id="sp_addr2" name="sp_addr2" class="sInput01" value="" title="자원봉사자정보 > 주소">
-							</li>
-						</ul>
-					</td>
-				</tr>
+
 				<tr>
 					<th>* 후원종류</th>
 					<td colspan="3">
@@ -181,16 +162,18 @@
 					<td colspan="3">
 						<ul class="ULS_RD type">
 							<li>
-								<label for="sp_dt_1">
-									<input type="radio" class="essential" name="sp_dt" id="sp_dt_1" value="1" title="후원일시">
-									<span>정기</span>
-								</label>
-							</li>
-							<li>
-								<label for="sp_dt_2">
-									<input type="radio" class="essential" name="sp_dt" id="sp_dt_2" value="2" title="후원일시">
-									<span>일시</span>
-								</label>
+								<span>정기</span>
+								<select name="month">
+									<option value="mon1" selected="selected">3</option>
+									<option value="mon2">6</option>
+									<option value="mon3">9</option>
+									<option value="mon4">12</option>
+									<option value="mon5">15</option>
+									<option value="mon6">18</option>
+									<option value="mon7">21</option>
+									<option value="mon8">24</option>
+								</select>
+								<span>개월</span>
 							</li>
 						</ul>
 					</td>
@@ -332,37 +315,7 @@
 						</table>
 					</td>
 				</tr>
-				<tr>
-					<th>* 후원경로</th>
-					<td colspan="3">
-						<ul class="ULS_RD type4">
-							<li>
-								<label for="sp_way_1">
-									<input type="radio" class="essential" name="sp_way" id="sp_way_1" value="1" title="후원경로">
-									<span>지인의 권유</span>
-								</label>
-							</li>
-							<li>
-								<label for="sp_way_3">
-									<input type="radio" class="essential" name="sp_way" id="sp_way_3" value="3" title="후원경로">
-									<span>홍보물이나 매체를 통해</span>
-								</label>
-							</li>
-							<li>
-								<label for="sp_way_4">
-									<input type="radio" class="essential" name="sp_way" id="sp_way_4" value="4" title="후원경로">
-									<span>직원의 권유</span>
-								</label>
-							</li>
-							<li>
-								<label for="sp_way_5">
-									<input type="radio" class="essential" name="sp_way" id="sp_way_5" value="5" title="후원경로">									<span>기타 </span>
-									<input type="text" id="sp_way_etc" name="sp_way_etc" value="" class="sInput06" title="후원경로 기타 입력란" disabled="">
-								</label>
-							</li>
-						</ul>
-					</td>
-				</tr>
+
 			</tbody>
                         </table>
                     </div>

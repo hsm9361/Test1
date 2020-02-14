@@ -5,6 +5,9 @@
     <title>Title</title>
     {%include 'include/lib.html'%}
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/volunteer.css') }}">
+	<script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
+	<script src="{{url_for('static', filename='javascript/volunteer.js')}}"></script>
+
 </head>
 <body>
     {%include 'include/header.html'%}
@@ -63,7 +66,7 @@
 						<ul class="T_UL">
 							<li class="marBott10">
 								<input type="text" id="vn_zp" name="vn_zp" class="sInput09" value="" title="자원봉사자정보 > 우편번호" readonly="">&nbsp;&nbsp;
-								<input type="button" onclick="openZipcode('vn_zp', 'vn_addr');" value="우편번호검색" class="basicB">
+								<input type="button" onclick="openZipSearch()" value="우편번호검색" class="basicB">
 							</li>
 							<li>
 								<input type="text" id="vn_addr" name="vn_addr" class="sInput01" value="" title="자원봉사자정보 > 주소">
@@ -82,13 +85,25 @@
 				<tr>
 					<th>* 참여동기</th>
 					<td colspan="3">
-						<input type="text" id="vn_cnt" name="vn_cnt" value="" class="essential sInput03" title="참여동기">
+						<select name="motive">
+							<option value="m1" selected="selected">자원봉사관심</option>
+							<option value="m2">여가활동</option>
+							<option value="m3">견문넓히기 위해</option>
+							<option value="m4">새로운것 경험</option>
+							<option value="m5">기타</option>
+						</select>
 					</td>
 				</tr>
 				<tr>
 					<th>* 희망분야</th>
 					<td colspan="3">
-						<input type="text" id="vn_cgr" name="vn_cgr" value="" class="essential sInput03" title="희망분야">
+						<select name="hope">
+							<option value="h1" selected="selected">시설봉사</option>
+							<option value="h2">재능나눔</option>
+							<option value="h3">지역사회</option>
+							<option value="h4">장애인봉사</option>
+							<option value="h5">기타</option>
+						</select>
 					</td>
 				</tr>
 
