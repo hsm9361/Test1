@@ -13,3 +13,9 @@ def lecture_list():
 def lecture_read():
     html = render_template('lecture/lecture_join.html')
     return html
+
+# 강의등록하는함수
+@lecture_blue.route('/lecture_write')
+def lecture_write():
+    html = render_template('lecture/lecture_write.html')
+    return html
