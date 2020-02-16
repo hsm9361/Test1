@@ -37,3 +37,10 @@ def facility_rantal_pro():
 
     html = render_template('nanum_info/rental_ok.html')
     return html
+
+# 예약되어있는 시간을 확인하는 함수
+@nanum_info_blue.route('/facility_reservation_check/<day>/<facility>', methods=['post'])
+def facility_reservation_check(day,facility):
+    time=nanum_info_dao.reservation_check(day,facility)
+    
+    return time

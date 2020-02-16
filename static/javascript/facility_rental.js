@@ -64,3 +64,43 @@ function inputPhoneNumber(obj) {
     }
     obj.value = phone;
 };
+
+function check(){
+//지금 쓰여있는 날짜의 값을 받아오는 부분
+var day=$( "#testDatepicker").val();
+
+//라디오버튼중 선택되어 있는부분의 값을 받아오는부분
+var facility = $('input[name="rn_cgr"]:checked').val();
+
+$.ajax({
+                url : 'facility_reservation_check/'+day+'/'+facility,
+                type : 'post',
+                dataType : 'json',
+                success : function(time){
+                    //alert(time.length)
+//                    alert(time[0])
+                    var array = ['09:00~10:00', '10:00~11:00', '11:00~12:00',
+'12:00~13:00','13:00~14:00', '14:00~15:00',
+'15:00~16:00', '16:00~17:00', '17:00~18:00']
+
+                    if(time.length==0){
+                    $('input[name="h_time"]').removeAttr("disabled")
+                    for(var i=0; i<9; i++) {
+                    var text=array[i]
+                    $('input[name="h_time"][value='+(i+1)+']').next().html(text);
+                    $('input[name="h_time"][value='+(i+1)+']').next().removeAttr("style");
+                    }
+                    }
+                    if (time.length>0){
+                    for(var i=0; i<time.length; i++) {
+//                    alert(time[i])
+                    $('input[name="h_time"][value='+time[i]+']').attr("disabled", 'disabled');
+                    $('input[name="h_time"][value='+time[i]+']').next().html('예약불가');
+                    $('input[name="h_time"][value='+time[i]+']').next().attr("style", 'color:red');
+                    }
+
+
+                    }
+                }
+            })
+}

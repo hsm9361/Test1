@@ -135,7 +135,7 @@ create table facility_rental_table(
 	fr_idx int auto_increment, -- 고유번호
     fr_room char(2) not null, -- 대관장소 번호
     fr_user_name varchar(50) not null, -- 예약자 명
-    fr_reservition_day date not null, -- 예약일
+    fr_reservation_day TIMESTAMP DEFAULT NOW() not null, -- 예약일
     fr_visitors int not null, -- 방문자수
     fr_phone varchar(25) not null, -- 연락처
     fr_email varchar(100), -- 이메일
@@ -147,6 +147,7 @@ create table facility_rental_table(
     constraint facility_rental_table_fk2 foreign key(fr_hope_time)
 		references fr_time_table(fr_time_idx) --
 );
+
 drop table room_type_table;
 create table room_type_table(
 	room_idx char(2), -- 고유번호
