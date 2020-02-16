@@ -47,7 +47,6 @@ def lecture_list():
 @lecture_blue.route('/lecture_join')
 def lecture_join(lecture_idx):
     # 파라미터 데이터 추출
-    print(lecture_idx)
     # 글 정보를 가져온다.
     result = lecture_dao.get_lecture_content(lecture_idx)
     # lecture_idx, lecture_name, lecture_start, lecture_end, lecture_enrollment, lecture_capacity,
@@ -64,58 +63,6 @@ def lecture_join(lecture_idx):
     html = render_template('lecture/lecture_join.html',data_dic=data_dic)
     return html
 
-# 게시글 작성 페이지
-@lecture_blue.route('/lecture_write')
-def lecture_write():
-    # 파라미터 데이터 추출
-    html = render_template('lecture/lecture_write.html')
-    return html
-
-# 게시글 수정 페이지
-# @lecture_blue.route('/lecutre_modify')
-# def lecture_modify():
-# 
-#     data_dic = {
-#         "board_writer_name" : "홍길동",
-#         "board_subject" : "글 제목입니다_홍길동",
-#         "board_content" : "글 내용입니다_홍길동",
-#         "board_image" : "image/aaaa.jpg"
-#     }
-#     html = render_template('lecture/lecture_modify.html',data_dic=data_dic)
-#     return html
-
-# 글쓰기 처리 페이지
-# @board_blue.route('/board_writer_pro', methods=['post'])
-# def board_writer_pro():
-#     # 파라미터 데이터 추출
-#     board_info_idx = request.values.get('board_info_idx')
-#     board_writer_idx = session['user_idx']
-#     board_subject = request.values.get('board_subject')
-#     board_content = request.values.get('board_content')
-# 
-#     # 업로드 된 파일이 있다면
-#     # 첨부파일을 설정했다면 name 속성의 값을 이름으로해서 전달된다.
-#     if 'board_image' in request.files:
-#         # 파일 데이터를 추출한다.
-#         board_image = request.files['board_image']
-#         # 저장할 파일 이름 (중복을 방지하기 위해 시간데이터 사용)
-#         file_name = str(int(time.time())) + board_image.filename
-#         # 저장될 경로를 합친 이름을 만든다.
-#         file_path = os.getcwd() + '/static/image/'+file_name
-#         # 저장한다.
-#         board_image.save(file_path)
-#     else :
-#         file_name = None
-# 
-#     # 저장
-#     board_idx = board_database.add_board_content(board_subject, board_content, board_writer_idx, board_info_idx, file_name)
-# 
-#     return f'''
-#         <script>
-#             alert('작성이 완료되었습니다.')
-#             location.href='board_read?board_idx={board_idx}'
-#         </script>
-#     '''
 
 # 신청 버튼 session
 # @lecture_blue.route('/lecture_request', methods=['post'])
@@ -142,4 +89,17 @@ def lecture_write():
 #     session['login']=False
 #     html = render_template('main/index.html')
 #     return html
-#
+
+
+# 강좌 취소 처리
+
+@lecture_blue.route('/lecture_user_drop', methods=['post','get'])
+def lecture_user_drop(lecture_idx):
+    lecture_idx = request.form.get(lecture_idx)
+    lecture_user_idx = session['user_idx']
+    
+    result = lecture_dao.lecture_drop(lecture_idx,lecture_user_idx)
+
+    html = render_template('lecture/lecture_join.html',result=result)
+    return html
+

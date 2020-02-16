@@ -61,7 +61,7 @@ def get_lecture_list(page):
 
 def get_lecture_content(lecture_idx):
     conn = database.get_connection()
-    print(lecture_idx)
+
     sql='''
         select lecture_idx, lecture_name, lecture_start, lecture_end, lecture_enrollment, lecture_capacity, lecture_target, lecture_price, lecture_teacher
         from lecture_table
@@ -100,6 +100,23 @@ def get_user_login_data(lecture_idx, user_idx):
         select lecture_idx, user_idx
         from lecture_reservation_table
         where lecture_idx = %s and user_idx = %s
+    '''
+
+    cursor = conn.cursor()
+    cursor.execute(sql, (lecture_idx, user_idx))
+    result = cursor.fetchone()
+
+    conn.close()
+    return result
+
+# 강좌 취소를 클릭시 호출되는 함수
+def lecture_drop(lecture_idx, user_idx):
+    conn = database.get_connection()
+
+    sql = '''
+        delete from lecture_reservation_table
+        where lecture_idx = %s and user_idx = %s;
+    
     '''
 
     cursor = conn.cursor()

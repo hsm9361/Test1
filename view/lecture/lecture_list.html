@@ -9,12 +9,11 @@
 
 <body>
 
-    <div class="container" style="margin-top:20px">
-        <h4 style="text-align: center;">문화마당</h4>
+    <div class="container" style="margin-top:100px;margin-bottom:100px">
+        <h4 style="text-align: center;">강좌 안내</h4>
         <div style="text-align: center;">
-            <h7><a href="/">홈</a> > 문화마당 > <a href="/lecture_list">강좌리스트</a></h7>
+            <h7><a href="/">홈</a> > 문화마당 > <a href="/lecture_list">강좌안내</a></h7>
         </div>
-
 
         <div class="container">
             <div class="row">
@@ -57,6 +56,15 @@
             <input type="hidden" name="sca" value="">
             <input type="hidden" name="sop" value="and">
 
+
+        <!-- 검색창 -->
+        <form name="fsearch" method="get" class="form-inline" style="margin-top:10px;
+                                                                     margin-bottom:10px;
+                                                                     justify-content: center;">
+            <input type="hidden" name="bo_table" value="0501">
+            <input type="hidden" name="sca" value="">
+            <input type="hidden" name="sop" value="and">
+
             <select name="sfl" id="sfl" class="form-control" style="margin:5px 0px;">
                 <option value="lecture_name">강의명</option>
                 <option value="teacher_name">강사명</option>
@@ -81,11 +89,12 @@
 
         <div class="clearfix" style="float:right">
             <div class="float-right">
+
                 <a href="/board_write" class="btn btn-primary">글쓰기</a>
+                <a href="/lecture_write" class="btn btn-primary">강좌등록</a>
             </div>
         </div>
-        </div>
-        </div>
+
 
 </body>
 </html>

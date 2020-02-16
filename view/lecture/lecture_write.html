@@ -3,8 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
+    {%include 'include/lib.html'%}
 </head>
+{%include 'include/header.html'%}
+
+
 <body>
- 작성!
+    <div class="container" style="margin-top:100px;margin-bottom:100px">
+        <h4 style="text-align: center;">강좌 등록하기</h4>
+        <div style="text-align: center;">
+            <h7><a href="/">홈</a> > 문화마당 > <a href="/lecture_list">강좌안내</a></h7>
+        </div>
+
+
+
+    <div class="row" style='margin-top:30px'>
+        <div class="col-2"></div>
+        <div class="col-8">
+            <div class="container" role="main">
+                <h7 style="margin-top:10px">강좌 등록하기</h7>
+                <form name="lecture_info_idx" id="free_form" role="form" method="post" enctype="multipart/form-data"
+                      action="#" style="margin-top:20px">
+                    <div class="form-group">
+                        <label for="lecture_title">강좌명</label>
+                        <input type="text" class="form-control" name="lecture_title" id="lecture_title">
+                    </div>
+                    <div class="form-group">
+                        <label for="teacher_name">강사명</label>
+                        <input type="text" class='form-control' id="teacher_name" name="teacher_name">
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>요일</label>
+                        <select class="day">
+                            <option value="">월수금</option>
+                            <option value="">화목토</option>
+                        </select>
+                        <br/>
+
+                        <label>시간</label>
+                        <select class="time" name="cateCode">
+                            <option value="">18:00 ~ 18:50</option>
+                            <option value="">20:00 ~ 20:50</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lecture_stu">교육대상</label>
+                        <input type="text" class='form-control' id="lecture_stu" name="lecture_stu">
+                    </div>
+
+                    <div class="form-group">
+                        <div>접수방법</div>
+                        <label for="lecture_regi">
+                            <input type="radio" name="lecture_regi" id="lecture_regi" value="internet" checked>
+                            인터넷접수
+                        </label>
+                        <label for="lecture_regi">
+                            <!-- id가 모두 lecture_regi로 같은뎀..? -->
+                            <input type="radio" name="lecture_regi" id="lecture_regi" value="call">
+                            전화접수
+                        </label>
+                        <label for="lecture_regi">
+                            <input type="radio" name="lecture_regi" id="lecture_regi" value="visit">
+                            방문접수
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lecture_image">이미지 첨부</label>
+                        <input type="file" class="form-control" id="lecture_image" name="lecture_image"
+                               accept="img/*"/>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="float-right">
+                            <button type="button" class="btn btn-primary" id="btnSave">저장</button>
+                            <a href="/lecture_list" class="btn btn-primary" id="btnList">목록</a>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+        <div class="col-2"></div>
+    </div>
+    </div>
 </body>
+{%include 'include/footer.html'%}
 </html>

@@ -15,35 +15,6 @@
             <h7><a href="/">홈</a> > 문화마당 > <a href="/board_list">공지사항</a></h7>
         </div>
 
-
-
-        <div class="clearfix" style='margin-top:30px'>
-            <div class="float-left">
-                    <div class="row">
-                        <div class="col-xs-8 col-xs-offset-2">
-                            <div class="input-group">
-                                <div class="input-group-btn search-panel">
-                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                        <span id="search_concept">분류</span> <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu" role="menu">
-                                      <li><a href="#">제목</a></li>
-                                      <li><a href="#">내용</a></li>
-                                      <li><a href="#">작성자</a></li>
-                                    </ul>
-                                </div>
-
-                                <input type="text" class="form-control" name="x">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-secondary" type="button">검색</button>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-
-            </div>
-        </div>
-
         <table class="table" style="margin-top:30px">
             <thead>
                 <tr>
@@ -76,16 +47,39 @@
             </tbody>
         </table>
 
-        <ul class="pagination justify-content-center">
-          <li class="page-item"><a class="page-link" href="#">&lt;&lt;</a></li>
+        <!-- 검색창 -->
+        <form name="fsearch" method="get" class="form-inline" style="margin-top:10px;
+                                                                     margin-bottom:10px;
+                                                                     justify-content: center;">
+            <input type="hidden" name="bo_table" value="0501">
+            <input type="hidden" name="sca" value="">
+            <input type="hidden" name="sop" value="and">
+
+            <select name="sfl" id="sfl" class="form-control" style="margin:5px 0px;">
+                <option value="wr_subject">제목</option>
+                <option value="wr_content">내용</option>
+                <option value="wr_subject||wr_content">제목+내용</option>
+                <option value="wr_name">작성자</option>
+            </select>
+
+            <div class="input-group" style="margin:5px 0px;">
+                <input type="text" name="stx" value="" required="" id="stx" class="form-control required" size="30" maxlength="30" placeholder="검색어를 입력하세요">
+                <div class="input-group-btn">
+                    <button type="submit" class="btn btn-primary">검색</button>
+                </div>
+            </div>
+        </form>
+
+        <!-- 페이지 인덱스 -->
+        <ul class="pagination" style="justify-content:center">
+            <li class="page-item"><a class="page-link" href="#">&lt;&lt;</a></li>
             {% for idx in range(1, 11) %}
-          <li class="page-item"><a class="page-link" href="#">{{idx}}</a></li>
+            <li class="page-item"><a class="page-link" href="#">{{idx}}</a></li>
             {% endfor %}
-          <li class="page-item"><a class="page-link" href="#">&gt;&gt;</a></li>
-        </ul>
+            <li class="page-item"><a class="page-link" href="#">&gt;&gt;</a></li>
+            </ul>
 
-
-        <div class="clearfix">
+        <div class="clearfix" style="float:right">
             <div class="float-right">
                 <a href="/board_write" class="btn btn-primary">글쓰기</a>
             </div>
