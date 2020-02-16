@@ -5,17 +5,15 @@
     <title>Title</title>
     {%include 'include/lib.html'%}
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/volunteer.css') }}">
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+<script src="{{url_for('static', filename='javascript/facility_rental.js')}}"></script>
+
 </head>
 <body>
     {%include 'include/header.html'%}
-	<script>
-		$(document).ready(function(){
-			$("select").on('change',function(){
-				var email2 = $(this).val();
-				$("#rn_email2").val(email2);
-			});
-		});
-	</script>
+
     <div class="container mt-3">
         <h2>시설대관</h2>
         <br>
@@ -25,7 +23,7 @@
                 <a class="nav-link active" data-toggle="tab" href="#info">봉사안내</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#valan">자원봉사신청</a>
+                <a class="nav-link" data-toggle="tab" href="#valan">시설대관</a>
             </li>
         </ul>
 
@@ -44,47 +42,55 @@
             </div>
             <div id="valan" class="container tab-pane fade"><br>
                 <p>*필수입력</p>
-                <form>
+                <form action="/facility_rantal_pro" method="post">
                     <div class="container">
                         <table class="table table-bordered">
                         <tbody>
+						<tr>
+								<th>* 대관일</th>
+								<td>
+									<ul class="ULS_RD type4">
+										<li><input type="text" value="" name="date" class="datepicker" id="testDatepicker" size="12" readonly="true"/></li>
+									</ul>
+								</td>
+							</tr>
 							<tr>
 								<th>* 대관장소</th>
 								<td>
 									<ul class="ULS_RD type4">
 										<li>
 											<label for="rn_cgr_1">
-												<input type="radio" class="essential" name="rn_cgr" id="rn_cgr_1" value="1" title="대관장소 종류">
+												<input type="radio" class="essential" name="rn_cgr" id="rn_cgr_1" value="1" checked="true">
 												<span>지하강당</span>
 											</label>
 										</li>
 										<li>
 											<label for="rn_cgr_2">
-												<input type="radio" class="essential" name="rn_cgr" id="rn_cgr_2" value="2" title="대관장소 종류">
+												<input type="radio" class="essential" name="rn_cgr" id="rn_cgr_2" value="2">
 												<span>꿈터사랑방</span>
 											</label>
 										</li>
 										<li>
 											<label for="rn_cgr_3">
-												<input type="radio" class="essential" name="rn_cgr" id="rn_cgr_3" value="3" title="대관장소 종류">
+												<input type="radio" class="essential" name="rn_cgr" id="rn_cgr_3" value="3">
 												<span>회의실</span>
 											</label>
 										</li>
 										<li>
 											<label for="rn_cgr_4">
-												<input type="radio" class="essential" name="rn_cgr" id="rn_cgr_4" value="4" title="대관장소 종류">
+												<input type="radio" class="essential" name="rn_cgr" id="rn_cgr_4" value="4">
 												<span>프로그램실</span>
 											</label>
 										</li>
 										<li>
 											<label for="rn_cgr_5">
-												<input type="radio" class="essential" name="rn_cgr" id="rn_cgr_5" value="5" title="대관장소 종류">
+												<input type="radio" class="essential" name="rn_cgr" id="rn_cgr_5" value="5">
 												<span>라온한울실</span>
 											</label>
 										</li>
 										<li>
 											<label for="rn_cgr_6">
-												<input type="radio" class="essential" name="rn_cgr" id="rn_cgr_6" value="6" title="대관장소 종류">
+												<input type="radio" class="essential" name="rn_cgr" id="rn_cgr_6" value="6">
 												<span>음악치료실</span>
 											</label>
 										</li>
@@ -94,21 +100,21 @@
 							<tr>
 								<th>* 이용자명</th>
 								<td>
-									<input type="text" id="rn_onm" name="rn_onm" value="" class="essential sInput08" title="이용자명">
+									<input type="text" id="rn_user" name="rn_user" value="">
 								</td>
 							</tr>
 							<tr>
 								<th>* 방문인원</th>
 								<td>
-									총 <input type="text" id="rn_num" name="rn_num" value="" class="essential sInput09" title="방문인원"> 명
+									총 <input type="text" id="rn_num" name="rn_num" value=""> 명
 								</td>
 							</tr>
 							<tr>
 								<th>* 이메일</th>
 								<td>
-									<input type="text" id="rn_email1" name="rn_email1" value="" class="essential sInput08" title="이메일"> @
-									<input type="text" id="rn_email2" name="rn_email2" value="" class="essential sInput08" title="이메일" readonly="">
-									<select class="selectEmail search-select" val="rn_email2" onchange="email_change">
+									<input type="text" id="rn_email1" name="rn_email1" value=""> @
+									<input type="text" id="rn_email2" name="rn_email2" value="">
+									<select val="rn_email2">
 										<option value="0">선택하세요</option>
 										<option value="naver.com">naver.com</option>
 										<option value="chol.com">chol.com</option>
@@ -128,26 +134,30 @@
 										<option value="paran.com">paran.com</option>
 										<option value="yahoo.com">yahoo.com</option>
 										<option value="yahoo.co.kr">yahoo.co.kr</option>
-										<option value="">직접입력</option>
+										<option value="직접">직접입력</option>
 									</select>
 								</td>
 							</tr>
 							<tr>
 								<th>* 휴대폰</th>
 								<td>
-									<input type="text" id="rn_tel1" name="rn_tel1" value="" class="essential sInput09" title="휴대폰"> -
-									<input type="text" id="rn_tel2" name="rn_tel2" value="" class="essential sInput09" title="휴대폰"> -
-									<input type="text" id="rn_tel3" name="rn_tel3" value="" class="essential sInput09" title="휴대폰">
+									<input type="text" id="phone"onKeyup="inputPhoneNumber(this);" name="phone" value="" title="휴대폰" maxlength="13">
 								</td>
 							</tr>
 							<tr>
-								<th>* 희망일시</th>
+								<th>* 희망시간</th>
 								<td>
-									<input type="text" id="rn_dt" name="rn_dt" value="" class="essential sInput09 datepicker hasDatepicker" title="날짜">
-									<input type="text" id="rn_st" name="rn_st" value="" class="essential sInput09" title="시작 시간 > 시"> 시
-									<input type="text" id="rn_sm" name="rn_sm" value="" class="essential sInput09" title="시작 시간 > 분"> 분 ~
-									<input type="text" id="rn_et" name="rn_et" value="" class="essential sInput09" title="끝 시간 > 시"> 시
-									<input type="text" id="rn_em" name="rn_em" value="" class="essential sInput09" title="끝 시간 > 분"> 분
+									<input type="checkbox" value="0" name="h_time">09:00~10:00
+									<input type="checkbox" value="1" name="h_time">10:00~11:00
+									<input type="checkbox" value="2" name="h_time">11:00~12:00
+									<br>
+									<input type="checkbox" value="3" name="h_time">12:00~13:00
+									<input type="checkbox" value="4" name="h_time">13:00~14:00
+									<input type="checkbox" value="5" name="h_time">14:00~15:00
+									<br>
+									<input type="checkbox" value="6" name="h_time">15:00~16:00
+									<input type="checkbox" value="7" name="h_time">16:00~17:00
+									<input type="checkbox" value="8" name="h_time">17:00~18:00
 								</td>
 							</tr>
 						</tbody>
