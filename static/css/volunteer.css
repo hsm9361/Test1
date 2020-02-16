@@ -1,7 +1,7 @@
     .img{
         position: relative;
 
-        background-image: url('../img/flower.jpg');
+        background-image: url('../img/spring-background.jpg');
         height: 60vh;
         background-size: cover;
     }

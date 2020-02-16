@@ -8,3 +8,6 @@ ul{
     margin-top: 0; // remove the gap so it doesn't close
  }
 
+.navbar-dark{
+    background-color: #df4758!important
+}
