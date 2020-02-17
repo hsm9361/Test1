@@ -32,6 +32,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                            {% if len(lecture_list_data)>0 %}
                             {% for obj in lecture_list_data %}
                             <tr>
                                 <td>{{obj.lecture_idx}}</td>
@@ -44,6 +45,7 @@
                                 <td>{{obj.lecture_teacher}}</td>
                             </tr>
                             {% endfor %}
+                        {%endif%}
                         </tbody>
                     </table>
                 </div>

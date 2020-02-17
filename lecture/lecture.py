@@ -22,6 +22,7 @@ def lecture_list():
     lecture_list_data = []
 
     # lecture_idx, lecture_name, lecture_start, lecture_end, lecture_capacity,, lecture_target, lecture_price, lecture_teacher
+    
     lecture_idx = result[0]
 
     # row의 수만큼 반복한다
