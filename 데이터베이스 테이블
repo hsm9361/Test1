@@ -215,3 +215,6 @@ select * from user_table;
 delete from support_table;
 
 select * from support_table;
+
+insert into lecture_table(lecture_name, lecture_enrollment, lecture_capacity, lecture_target, lecture_teacher, lecture_deadline, lecture_start, lecture_end)
+values('목도리 뜨기',0,2,'만 65세 이상','김푸름','2020-02-02','2020-03-01','2020-03-02');

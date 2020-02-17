@@ -4,7 +4,65 @@
     <meta charset="UTF-8">
     <title>Title</title>
     {%include 'include/lib.html'%}
+    <script>
+        // 취소시 delete
+    function del_req(){
+        //user_idx = session["user_idx"]
+        lecture_idx = $("#lecture_idx").val()
 
+        param = {
+        lecture_idx : lecture_idx
+        }
+        $.ajax({
+            url : '/delete_lecture',
+            type : 'post',
+            dataType : 'text',
+            data : param,
+            success : function(result){
+                alert('강좌를 취소하셨습니다.')
+                }
+        })
+
+    }
+
+    // 신청시 add_req
+    function add_req(){
+        //user_idx = session["user_idx"]
+        lecture_idx = $("#lecture_idx").val()
+
+        param = {
+        lecture_idx : lecture_idx
+        }
+        $.ajax({
+            url : '/reserve_lecture',
+            type : 'post',
+            dataType : 'text',
+            data : param,
+            success : function(result){
+                alert('강좌를 신청하셨습니다.')
+                }
+        })
+
+    }
+
+    function time_out(){
+        lecture_idx = $("#lecture_idx").val()
+
+        param = {
+        lecture_idx : lecture_idx
+        }
+        $.ajax({
+            url : '/cal_time',
+            type : 'post',
+            dataType : 'text',
+            data : param,
+            success : function(result){
+                alert("ㅠㅠ")
+            }
+        })
+    }
+
+    </script>
 </head>
 {%include 'include/header.html'%}
 
@@ -15,7 +73,8 @@
         <div style="text-align: center;">
             <h7><a href="/">홈</a> > 문화마당 > <a href="/lecture_list">강좌예약 및 취소</a></h7>
         </div>
-
+        <input type="hidden" id="user_idx" value="{{user_idx}}" >
+        <input type="hidden" id="lecture_idx" value="{{data_dic.lecture_idx}}">
         <div class="row" style='margin-top:30px'>
             <div class="col-2"></div>
             <div class="col-8">
@@ -53,7 +112,7 @@
                             </tr>
                             <tr>
                                 <td>신청인원</td>
-                                <td>{{data_dic.lecture_enrollment}}</td>
+                                <td>{{reserve_count[0]}}</td>
                             </tr>
                             <tr>
                                 <td>정원</td>
@@ -63,20 +122,27 @@
                         </div>
                     </div>
                 </div>
+                <!--<td><a href="{{data_dic.lecture_idx}}/lecture_check">hi</a></td> -->
                 <div class="clearfix" style="float:right">
                     <div class="float-right">
+                        {% if auth == True %}
+                        <button type="button" class="btn btn-primary" onclick="drop_lec(); location.href='/lecture_list'">강좌삭제</button>
+                        <a href="/lecture_list" class="btn btn-primary">강좌목록</a>
+                        {% elif session['login'] and lecture_request == False and current_reserve == False%}
+                        <a href="/lecture_list" class="btn btn-primary">강좌목록</a>
+                        {% elif session['login'] and lecture_request == False and current_reserve == True%}
+                        <button id="add_req" type="button" class="btn btn-primary" onclick="add_req(); location.href='/lecture_list'">강좌신청</button>
+                        <a href="/lecture_list" class="btn btn-primary">강좌목록</a>
+                        {% elif session['login'] and lecture_request == True and current_reserve == True%}
+                        <button id="del_req" type="button" class="btn btn-primary" onclick="del_req(); location.href='/lecture_list'">강좌취소</button>
+                        <a href="/lecture_list" class="btn btn-primary">강좌목록</a>
+                        <!--로그인이 아닐때 목록만 뜨게 하고 싶은데ㅠㅠ-->
 
-                        <a href="/board_write" class="btn btn-primary">글쓰기</a>
-                        <a href="/lecture_write" class="btn btn-primary">강좌등록</a>
+                        {% else %}
+                        <a href="/lecture_list" class="btn btn-primary">강좌목록</a>
+                        {% endif %}
                     </div>
                 </div>
-
-                         <!--{% if session['uer_idx'] and session['login'] == True%}
-                            <a href="#" class="btn btn-success">강좌신청</a>
-                            <a href="#" action="lecture_user_drop" class="btn btn-success">강좌취소</a>
-                            <a href="lecture_list" class="btn btn-primary">로그아웃</a>
-                        {% else %}
-                        {% endif %}-->
 
              <div class="col-2"></div>
             </div>

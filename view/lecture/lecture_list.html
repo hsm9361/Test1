@@ -78,23 +78,25 @@
             </div>
         </form>
 
-        <!-- 페이지 인덱스 -->
+        <!-- 페이지 인덱스
         <ul class="pagination" style="justify-content:center">
             <li class="page-item"><a class="page-link" href="#">&lt;&lt;</a></li>
             {% for idx in range(1, 11) %}
             <li class="page-item"><a class="page-link" href="#">{{idx}}</a></li>
             {% endfor %}
             <li class="page-item"><a class="page-link" href="#">&gt;&gt;</a></li>
-            </ul>
+        </ul>
+        -->
 
         <div class="clearfix" style="float:right">
             <div class="float-right">
-
-                <a href="/board_write" class="btn btn-primary">글쓰기</a>
+                {% if session['login'] and auth == True %}
                 <a href="/lecture_write" class="btn btn-primary">강좌등록</a>
+                {% endif %}
             </div>
         </div>
-
-
+        </form>
+        </div>
+    </div>
 </body>
 </html>

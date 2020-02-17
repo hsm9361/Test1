@@ -3,11 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-
     {%include 'include/lib.html'%}
+    <script>
+        function check_input(){
+            // 사용자가 입력한 데이터를 추출한다.
+            var lecture_title = $("#lecture_title").val()
+            var lecture_teacher = $("#lecture_teacher").val()
+            var lecture_capacity = $("#lecture_capacity").val()
+            var lecture_target = $("#lecture_target").val()
+            var lecture_price = $("#lecture_price").val()
+            var teacher_name = $("#teacher_name").val()
+            var lecture_deadline = $("#lecture_deadline").val()
+            var lecture_start = $("#lecture_start").val()
+            var lecture_end = $("#lecture_end").val()
+
+            if(lecture_title.length == 0){
+                alert("강좌제목을 입력해주세요")
+                $("#lecture_title").focus()
+                return false
+            }
+
+            if(lecture_teacher.length == 0){
+                alert("강사명을 입력해주세요")
+                $("#lecture_teacher").focus()
+                return false
+            }
+
+            if(lecture_capacity.length == 0){
+                alert('교육인원을 입력해주세요')
+                $("#lecture_capacity").focus()
+                return false
+            }
+
+            if(lecture_target.length == 0){
+                alert('교육대상을 입력해주세요')
+                $("#lecture_target").focus()
+                return false
+            }
+
+            if(lecture_price.length == 0 ){
+                alert('수강료를 입력해주세요.')
+                $("#lecture_price").focus()
+                return false
+            }
+
+            if(teacher_name.length == 0 ){
+                alert('강사명을 입력해주세요.')
+                $("#teacher_name").focus()
+                return false
+            }
+
+            if(lecture_deadline.length == 0 ){
+                alert('신청마감일을 정해주세요.')
+                $("#lecture_deadline").focus()
+                return false
+            }
+
+            if(lecture_start.length == 0 ){
+                alert('강좌시작일을 정해주세요.')
+                $("#lecture_start").focus()
+                return false
+            }
+
+            if(lecture_end.length == 0 ){
+                alert('강좌종료일을 정해주세요.')
+                $("#lecture_end").focus()
+                return false
+            }
+
+
+            return true
+
+        }
+
+    </script>
 </head>
 {%include 'include/header.html'%}
-
 
 <body>
     <div class="container" style="margin-top:100px;margin-bottom:100px">
@@ -16,80 +87,109 @@
             <h7><a href="/">홈</a> > 문화마당 > <a href="/lecture_list">강좌안내</a></h7>
         </div>
 
+<!-- name="lecture_info_idx" id="free_form" role="form"
+    enctype="multipart/form-data"
+ -->
 
-
-    <div class="row" style='margin-top:30px'>
-        <div class="col-2"></div>
-        <div class="col-8">
-            <div class="container" role="main">
-                <h7 style="margin-top:10px">강좌 등록하기</h7>
-                <form name="lecture_info_idx" id="free_form" role="form" method="post" enctype="multipart/form-data"
-                      action="#" style="margin-top:20px">
-                    <div class="form-group">
-                        <label for="lecture_title">강좌명</label>
-                        <input type="text" class="form-control" name="lecture_title" id="lecture_title">
-                    </div>
-                    <div class="form-group">
-                        <label for="teacher_name">강사명</label>
-                        <input type="text" class='form-control' id="teacher_name" name="teacher_name">
-                    </div>
-
-
-                    <div class="form-group">
-                        <label>요일</label>
-                        <select class="day">
-                            <option value="">월수금</option>
-                            <option value="">화목토</option>
-                        </select>
-                        <br/>
-
-                        <label>시간</label>
-                        <select class="time" name="cateCode">
-                            <option value="">18:00 ~ 18:50</option>
-                            <option value="">20:00 ~ 20:50</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="lecture_stu">교육대상</label>
-                        <input type="text" class='form-control' id="lecture_stu" name="lecture_stu">
-                    </div>
-
-                    <div class="form-group">
-                        <div>접수방법</div>
-                        <label for="lecture_regi">
-                            <input type="radio" name="lecture_regi" id="lecture_regi" value="internet" checked>
-                            인터넷접수
-                        </label>
-                        <label for="lecture_regi">
-                            <!-- id가 모두 lecture_regi로 같은뎀..? -->
-                            <input type="radio" name="lecture_regi" id="lecture_regi" value="call">
-                            전화접수
-                        </label>
-                        <label for="lecture_regi">
-                            <input type="radio" name="lecture_regi" id="lecture_regi" value="visit">
-                            방문접수
-                        </label>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="lecture_image">이미지 첨부</label>
-                        <input type="file" class="form-control" id="lecture_image" name="lecture_image"
-                               accept="img/*"/>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="float-right">
-                            <button type="button" class="btn btn-primary" id="btnSave">저장</button>
-                            <a href="/lecture_list" class="btn btn-primary" id="btnList">목록</a>
+        <div class="row" style='margin-top:30px'>
+            <div class="col-2"></div>
+            <div class="col-8">
+                <div class="container" role="main">
+                    <!--<h7 style="margin-top:10px">강좌 등록하기</h7>-->
+                    <form action="lecture_write_pro" method="post" style="margin-top:20px" onsubmit="return check_input()">
+                        <div class="form-group">
+                            <label for="lecture_name">강좌명</label>
+                            <input type="text" class="form-control" name="lecture_name" id="lecture_name">
                         </div>
-                    </div>
+                        <div class="form-group">
+                            <label for="lecture_teacher">강사명</label>
+                            <input type="text" class='form-control' id="lecture_teacher" name="lecture_teacher">
+                        </div>
+    <!-- lecture_idx, lecture_name, lecture_enrollment, lecture_capacity, lecture_target, lecture_price, lecture_teacher, lecture_deadline, lecture_start, lecture_end -->
+                        <div class="form-group">
+                            <label for="lecture_target">교육대상</label>
+                            <input type="text" class='form-control' id="lecture_target" name="lecture_target">
+                        </div>
+                        <div class="form-group">
+                            <label for="lecture_capacity">교육인원</label>
+                            <input type="text" class='form-control' id="lecture_capacity" name="lecture_capacity">
+                        </div>
+                        <div class="form-group">
+                            <label for="lecture_price">강좌수강료</label>
+                            <input type="text" class='form-control' id="lecture_price" name="lecture_price">
+                        </div>
+                        <div class="form-group">
+                            <label for="lecture_deadline">신청마감날짜 </label>
+                            <!-- <input type="text" class='form-control' id="lecture_deadline" name="lecture_deadline">-->
+                            <input type="date" id="lecture_deadline" name="lecture_deadline">
+                        </div>
+                        <script>
+                            document.getElementById('lecture_deadline').value = new Date().toISOString().substring(0, 10);;
+                        </script>
+                        <div class="form-group">
+                            <label for="lecture_start">강좌시작날짜 </label>
+                            <!--<input type="text" class='form-control' id="lecture_start" name="lecture_start">-->
+                            <input type="date" id="lecture_start" name="lecture_start">
+                        </div>
+                        <div class="form-group">
+                            <label for="lecture_end">강좌종료날짜 </label>
+                            <!--<input type="text" class='form-control' id="lecture_end" name="lecture_end">-->
+                            <input type="date" id="lecture_end" name="lecture_end">
+                        </div>
+                        <div class="form-group">
+                            <label>요일</label>
+                            <select class="day">
+                                <option id="day_1" value="1">월수금</option>
+                                <option id="day_2" value="2">화목토</option>
+                            </select>
+                            <br/>
 
-                </form>
+                            <label>시간</label>
+                            <select class="time" name="cateCode">
+                                <option id="time_1" value="1">16:00 ~ 16:50</option>
+                                <option id="time_2" value="2">17:00 ~ 17:50</option>
+                                <option id="time_3" value="3">18:00 ~ 18:50</option>
+                                <option id="time_4" value="4">19:00 ~ 19:50</option>
+                                <option id="time_5" value="5">20:00 ~ 20:50</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <div>접수방법</div>
+                            <label for="internet">
+                                <input type="radio" name="internet" id="internet" value="internet" checked>
+                                인터넷접수
+                            </label>
+                            <label for="call">
+                                <input type="radio" name="call" id="call" value="call">
+                                전화접수
+                            </label>
+                            <label for="visit">
+                                <input type="radio" name="visit" id="visit" value="visit">
+                                방문접수
+                            </label>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="lecture_image">이미지 첨부</label>
+                            <input type="file" class="form-control" id="lecture_image" name="lecture_image"
+                                   accept="img/*"/>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="classfix">
+                                <div class="float-right">
+                                    <button type="submit" class="btn btn-primary" id="btnSave">저장</button>
+                                    <a href="/lecture_list" class="btn btn-primary" id="btnList">목록</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
             </div>
+            <div class="col-2"></div>
         </div>
-        <div class="col-2"></div>
-    </div>
     </div>
 </body>
 {%include 'include/footer.html'%}
