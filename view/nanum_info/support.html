@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/volunteer.css') }}">
 	<script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
 	<script src="{{url_for('static', filename='javascript/volunteer.js') }}"></script>
+	<script src="{{url_for('static', filename='javascript/facility_rental.js')}}"></script>
 </head>
 <body>
     {%include 'include/header.html'%}
@@ -44,7 +45,7 @@
             </div>
             <div id="valan" class="container tab-pane fade"><br>
                 <p>*필수입력</p>
-                <form>
+                <form action="/support_pro" method="post">
                     <div class="container">
                         <table class="table table-bordered">
                         <tbody>
@@ -110,10 +111,8 @@
 				</tr>
 				<tr>
 					<th>* 휴대폰</th>
-					<td colspan="3">
-						<input type="text" id="sp_tel1" name="sp_tel1" value="" class="essential sInput09" title="휴대폰"> -
-						<input type="text" id="sp_tel2" name="sp_tel2" value="" class="essential sInput09" title="휴대폰"> -
-						<input type="text" id="sp_tel3" name="sp_tel3" value="" class="essential sInput09" title="휴대폰">
+					<td>
+						<input type="text" id="phone"onKeyup="inputPhoneNumber(this);" name="sp_phone" value="" title="휴대폰" maxlength="13">
 					</td>
 				</tr>
 				<tr>
@@ -164,14 +163,14 @@
 							<li>
 								<span>정기</span>
 								<select name="month">
-									<option value="mon1" selected="selected">3</option>
-									<option value="mon2">6</option>
-									<option value="mon3">9</option>
-									<option value="mon4">12</option>
-									<option value="mon5">15</option>
-									<option value="mon6">18</option>
-									<option value="mon7">21</option>
-									<option value="mon8">24</option>
+									<option value="3" selected="selected">3</option>
+									<option value="6">6</option>
+									<option value="9">9</option>
+									<option value="12">12</option>
+									<option value="15">15</option>
+									<option value="18">18</option>
+									<option value="21">21</option>
+									<option value="24">24</option>
 								</select>
 								<span>개월</span>
 							</li>
@@ -184,32 +183,32 @@
 						<ul class="ULS_RD type3">
 							<li>
 								<label for="sp_rt_1">
-									<input type="radio" class="essential" name="sp_rt" id="sp_rt_1" value="1" title="후원종류">
+									<input type="radio" class="essential" name="sp_rt" id="sp_rt_1" value="통장입금(정기)" title="후원종류">
 									<span>통장입금(정기)</span>
 								</label>
 							</li>
 							<li>
 								<label for="sp_rt_2">
-									<input type="radio" class="essential" name="sp_rt" id="sp_rt_2" value="2" title="후원종류">
+									<input type="radio" class="essential" name="sp_rt" id="sp_rt_2" value="일시적" title="후원종류">
 									<span>일시적 </span>
 									<input type="text" id="sp_rt_etc" name="sp_rt_etc" value="" class="sInput06" title="일시적 후원금 입력란" disabled="">원을 후원
 								</label>
 							</li>
 							<li>
 								<label for="sp_rt_3">
-									<input type="radio" class="essential" name="sp_rt" id="sp_rt_3" value="3" title="후원종류">
+									<input type="radio" class="essential" name="sp_rt" id="sp_rt_3" value="CMS" title="후원종류">
 									<span>CMS</span>
 								</label>
 							</li>
 							<li>
 								<label for="sp_rt_4">
-									<input type="radio" class="essential" name="sp_rt" id="sp_rt_4" value="4" title="후원종류">
+									<input type="radio" class="essential" name="sp_rt" id="sp_rt_4" value="지로이용" title="후원종류">
 									<span>지로이용</span>
 								</label>
 							</li>
 							<li>
 								<label for="sp_rt_5">
-									<input type="radio" class="essential" name="sp_rt" id="sp_rt_5" value="5" title="후원종류">
+									<input type="radio" class="essential" name="sp_rt" id="sp_rt_5" value="직접 전달" title="후원종류">
 									<span>직접 전달</span>
 								</label>
 							</li>
@@ -222,31 +221,31 @@
 						<ul class="ULS_RD type4">
 							<li>
 								<label for="sp_py_1">
-									<input type="radio" class="essential" name="sp_py" id="sp_py_1" value="1" title="후원금액">
+									<input type="radio" class="essential" name="sp_py" id="sp_py_1" value="5000" title="후원금액">
 									<span>월 5,000원</span>
 								</label>
 							</li>
 							<li>
 								<label for="sp_py_2">
-									<input type="radio" class="essential" name="sp_py" id="sp_py_2" value="2" title="후원금액">
+									<input type="radio" class="essential" name="sp_py" id="sp_py_2" value="10000" title="후원금액">
 									<span>월 10,000원 </span>
 								</label>
 							</li>
 							<li>
 								<label for="sp_py_3">
-									<input type="radio" class="essential" name="sp_py" id="sp_py_3" value="3" title="후원금액">
+									<input type="radio" class="essential" name="sp_py" id="sp_py_3" value="20000" title="후원금액">
 									<span>월 20,000원</span>
 								</label>
 							</li>
 							<li>
 								<label for="sp_py_4">
-									<input type="radio" class="essential" name="sp_py" id="sp_py_4" value="4" title="후원금액">
+									<input type="radio" class="essential" name="sp_py" id="sp_py_4" value="50000" title="후원금액">
 									<span>월 50,000원</span>
 								</label>
 							</li>
 							<li>
 								<label for="sp_py_5">
-									<input type="radio" class="essential" name="sp_py" id="sp_py_5" value="5" title="후원금액">
+									<input type="radio" class="essential" name="sp_py" id="sp_py_5" value="100000" title="후원금액">
 									<span>월 100,000원</span>
 								</label>
 							</li>
@@ -298,13 +297,13 @@
 										<ul class="ULS_RD type4">
 											<li>
 												<label for="sp_wd_1">
-													<input type="radio" class="essential" name="sp_wd" id="sp_wd_1" value="1" title="출금일">
+													<input type="radio" class="essential" name="sp_wd" id="sp_wd_1" value="10" title="출금일">
 													<span>10일</span>
 												</label>
 											</li>
 											<li>
 												<label for="sp_wd_2">
-													<input type="radio" class="essential" name="sp_wd" id="sp_wd_2" value="2" title="출금일">
+													<input type="radio" class="essential" name="sp_wd" id="sp_wd_2" value="25" title="출금일">
 													<span>25일</span>
 												</label>
 											</li>
@@ -321,7 +320,7 @@
                     </div>
                     <div class="row">
                             <div class="col-12">
-                                <input type="submit" value="신청" class="btn btn-primary">
+								<input type="submit" value="신청" class="btn btn-primary">
                             </div>
                         </div>
 
