@@ -33,3 +33,23 @@ def reservation_check(day,facility):
     time=json.dumps(time_list)
 
     return time
+
+def get_reservation_list():
+    conn = database.get_connection()
+
+    sql = '''
+                select f.fr_idx, r.room_name, f.fr_user_name, f.fr_visitors,f.fr_hope_day, t.fr_time, f.fr_reservation_day
+                from facility_rental_table f
+                    inner join fr_time_table t
+                    on f.fr_hope_time=t.fr_time_idx
+                    inner join room_type_table r
+                    on f.fr_room=r.room_idx
+                    order by f.fr_hope_day
+                '''
+    cursor = conn.cursor()
+    cursor.execute(sql)
+    result = cursor.fetchall()
+
+    conn.close()
+
+    return result

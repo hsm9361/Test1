@@ -3,8 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    {%include 'include/lib.html'%}
 </head>
 <body>
-    <h1>예약 완료</h1>
+{%include 'include/header.html'%}
+    <h4 style="text-align: center;">예약확인</h4>
+        <div style="text-align: center;">
+            <h7><a href="/">홈</a> > 나눔안내 > <a href="/rental_ok">예약확인</a></h7>
+        </div>
+    <div class="container">
+    <table class="table" style="margin-top:30px">
+            <thead>
+                <tr>
+                    <th>예약번호</th>
+                    <th>대관장소</th>
+                    <th>이용자명</th>
+                    <th>방문인원</th>
+                    <th>대관일</th>
+                    <th>희망시간</th>
+                    <th>예약시간</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for obj in data_list %}
+                <tr>
+                    <td>{{obj.idx}}</td>
+                    <td>{{obj.room}}</td>
+                    <td>{{obj.name}}</td>
+                    <td>{{obj.visiters}}명</td>
+                    <td>{{obj.day}}</td>
+                    <td>{{obj.time}}</td>
+                    <td>{{obj.reservation}}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
 </body>
 </html>

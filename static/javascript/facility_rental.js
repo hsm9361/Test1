@@ -10,6 +10,9 @@ $(document).ready(function(){
 				$("#rn_email2").val(email2);
 				}
 			});
+			$("input:text[numberOnly]").on("keyup", function() {
+            $(this).val($(this).val().replace(/[^0-9]/g,""));
+            });
 		});
 
 
@@ -38,6 +41,7 @@ $(document).ready(function(){
       var dd = this.getDate().toString();
       return  yyyy + "-" + (mm[1] ? mm : "0" + mm[0]) + "-" + (dd[1] ? dd : "0" + dd[0]);
   };
+
 
 function inputPhoneNumber(obj) {
     var number = obj.value.replace(/[^0-9]/g, "");
@@ -103,4 +107,36 @@ $.ajax({
                     }
                 }
             })
+}
+
+function validation(){
+
+var user_name=$("#rn_user").val()
+var rn_num=$("#rn_num").val()
+var rn_email1=$("#rn_email1").val()
+var rn_email2=$("#rn_email2").val()
+var phone=$("#phone").val()
+
+if(user_name.length==0){
+    alert('이름입력해주세요')
+    $("#rn_user").focus()
+    return false;
+}
+if(rn_num.length==0){
+    alert('방문인원을 입력해주세요')
+    $("#rn_num").focus()
+    return false;
+}
+if(rn_email1.length==0 || rn_email2.length==0){
+    alert('이메일을 입력하세요')
+    $("#rn_email1").focus()
+    return false;
+}
+if(phone.length==0){
+    alert('휴대폰번호를 입력해주세요')
+    $("#phone").focus()
+    return false;
+}
+
+
 }

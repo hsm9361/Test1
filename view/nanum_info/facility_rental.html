@@ -42,7 +42,7 @@
             </div>
             <div id="valan" class="container tab-pane fade"><br>
                 <p>*필수입력</p>
-                <form action="/facility_rantal_pro" method="post">
+                <form action="/facility_rantal_pro" method="post" onsubmit="return validation()">
                     <div class="container">
                         <table class="table table-bordered">
                         <tbody>
@@ -106,14 +106,14 @@
 							<tr>
 								<th>* 방문인원</th>
 								<td>
-									총 <input type="text" id="rn_num" name="rn_num" value=""> 명
+									총 <input type="text" id="rn_num" name="rn_num" value="" numberOnly> 명
 								</td>
 							</tr>
 							<tr>
 								<th>* 이메일</th>
 								<td>
 									<input type="text" id="rn_email1" name="rn_email1" value=""> @
-									<input type="text" id="rn_email2" name="rn_email2" value="">
+									<input type="text" id="rn_email2" name="rn_email2" >
 									<select val="rn_email2">
 										<option value="0">선택하세요</option>
 										<option value="naver.com">naver.com</option>
@@ -141,7 +141,7 @@
 							<tr>
 								<th>* 휴대폰</th>
 								<td>
-									<input type="text" id="phone"onKeyup="inputPhoneNumber(this);" name="phone" value="" title="휴대폰" maxlength="13">
+									<input type="text" id="phone"onKeyup="inputPhoneNumber(this);" name="phone" title="휴대폰" maxlength="13">
 								</td>
 							</tr>
 							<tr>
@@ -165,7 +165,7 @@
                     </div>
                     <div class="row">
                             <div class="col-12">
-                                <input type="submit" value="신청" class="btn btn-primary">
+                                <input type="submit" value="신청" class="btn btn-primary" >
                             </div>
                         </div>
 
