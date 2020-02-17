@@ -23,7 +23,8 @@
                             <tr>
                                 <th>번호</th>
                                 <th style="width:30%">강좌명</th>
-                                <th>수강기간</th>
+                                <th>강의시작일</th>
+                                <th>강의종료일</th>
                                 <th>정원</th>
                                 <th>대상</th>
                                 <th>수강료</th>
@@ -31,19 +32,30 @@
                             </tr>
                         </thead>
                         <tbody>
+                            {% for obj in lecture_list_data %}
                             <tr>
-                                <td>1</td>
-                                <td><a href="/lecture_join">글 제목입니다</a></td>
-                                <td>2020-02-11~2020-03-01</td>
-                                <td>40</td>
-                                <td>누구나</td>
-                                <td>10000</td>
-                                <td>홍사명</td>
+                                <td>{{obj.lecture_idx}}</td>
+                                <td><a href="lecture_join/{{obj.lecture_idx}}">{{obj.lecture_name}}</a></td>
+                                <td>{{obj.lecture_start}}</td>
+                                <td>{{obj.lecture_end}}</td>
+                                <td>{{obj.lecture_capacity}}</td>
+                                <td>{{obj.lecture_target}}</td>
+                                <td>{{obj.lecture_price}}</td>
+                                <td>{{obj.lecture_teacher}}</td>
                             </tr>
+                            {% endfor %}
                         </tbody>
                     </table>
                 </div>
             </div>
+<!-- 검색창 -->
+        <form name="fsearch" method="get" class="form-inline" style="margin-top:10px;
+                                                                     margin-bottom:10px;
+                                                                     justify-content: center;">
+            <input type="hidden" name="bo_table" value="0501">
+            <input type="hidden" name="sca" value="">
+            <input type="hidden" name="sop" value="and">
+
 
         <!-- 검색창 -->
         <form name="fsearch" method="get" class="form-inline" style="margin-top:10px;
@@ -77,10 +89,12 @@
 
         <div class="clearfix" style="float:right">
             <div class="float-right">
+
+                <a href="/board_write" class="btn btn-primary">글쓰기</a>
                 <a href="/lecture_write" class="btn btn-primary">강좌등록</a>
             </div>
         </div>
 
-    </div>
+
 </body>
 </html>

@@ -72,7 +72,37 @@ def facility_rantal_pro():
     # print(f'fr_room :{fr_room} fr_user_name: {fr_user_name} fr_visitors:{fr_visitors} fr_email{fr_email} fr_phone{fr_phone}'
     #       f'fr_hope_time{fr_hope_time} fr_reservition_day{fr_reservition_day}')
 
+    next_page = '''
+        <script>
+            alert('예약이 완료되었습니다.')
+            location.href='/'
+        </script>
+        '''
+    return next_page
 
+# 예약되어있는 시간을 확인하는 함수
+@nanum_info_blue.route('/facility_reservation_check/<day>/<facility>', methods=['post'])
+def facility_reservation_check(day,facility):
+    time=nanum_info_dao.reservation_check(day,facility)
 
-    html = render_template('nanum_info/rental_ok.html')
+    return time
+
+@nanum_info_blue.route('/rental_ok')
+def rental_ok():
+    result=nanum_info_dao.get_reservation_list()
+
+    data_list=[]
+    for row in result :
+        obj={
+            'idx' : row[0],
+            'room' : row[1],
+            'name' : row[2],
+            'visiters' : row[3],
+            'day' : row[4],
+            'time' : row[5],
+            'reservation' : row[6]
+        }
+        data_list.append(obj)
+
+    html = render_template('nanum_info/rental_ok.html', data_list=data_list)
     return html
