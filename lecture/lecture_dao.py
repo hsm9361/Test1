@@ -1,36 +1,81 @@
 import pymysql
 from db import database
 
-# 강좌 정보를 보여주는 함수 => 그냥 DB에서 가져오면 된다.
-# 변경되는 사항을 함수 만들기
+# 세션에 따른 user_idx받기--ok
+# 홈페이지에 따라 lecture_idx받기--ok
+# 세션에 따라 버튼 달라지기--ok
+# 드롭함수생성 인서트(신청)함수 생성 -> 디비에서 변하는지 확인--ok
+# 카운트로 현재 인원수 새서 뿌리기--ok
+# 신청인원이 다 차면--ok
+# 강좌삭제하기 --ok (간단하게ㅠㅠ)
+# 로그아웃 된 상태면 강의목록만 띄우기 -> session['login'] 사용 --ok
+# 관리자권한인 친구들만 강좌등록 띄우기 --ok
+# DB가 안켜져 있으면 RuntimeError: cryptography is required for sha256_password or caching_sha2_password -> pip install cryptography
+# 신청기간이 지나면 버튼 사라지기
 
-# 디비에서 불러오기
-# 강좌신청 인원이 모두 차면 버튼 사라지기
-# 강좌 신청 기간이 지나면 버튼 사라지기
-# 강좌 취소 버튼 생성 -> 데이터베이스에서 drop
-# 예약 했을 때만 취소 뜨도록
+# 강좌신청가능시간을 계산하는 함수
+def cal_time(lecture_idx):
+    conn = database.get_connection()
+    sql = '''
+        select lecture_deadline
+        from lecture_table
+        where lecture_idx = %s
+    '''
+    
+    cursor = conn.cursor()
+    cursor.execute(sql, (lecture_idx))
+    result = cursor.fetchone()
+    conn.close()
 
-# 관리자 권한만 글쓰기
+    return result[0]
 
-# 신청받으면 db에서 len함수나 count로 인원 수 표시
-
-# 중복확인 여부 검사
-# 해당 user_idx가 같은 강의에 신청한다면 창 띄우기
-# 해당 user_idx가 html에 접속한다면 버튼 띄우지 않기.
-
-
-# 유저가 예약 버튼을 누르면 강좌 예약 테이블에 유저의 고유번호가 추가
-def add_lecture_user(lecture_idx, user_idx):
+# 강좌를 추가하는 함수
+def add_lecture(lecture_name, lecture_capacity, lecture_target, lecture_price, lecture_teacher, lecture_deadline, lecture_start, lecture_end):
     conn = database.get_connection()
 
     sql = '''
-        insert into lecture_reservation_table(lecture_idx, user_idx, reservation_time)
-        values(%s, %s, sysdate())
+        insert into lecture_table(lecture_name,lecture_enrollment, lecture_capacity, lecture_target, lecture_price, lecture_teacher, lecture_deadline, lecture_start, lecture_end)
+        values(%s, 0, %s, %s, %s, %s, %s, %s, %s)
     '''
+
     cursor = conn.cursor()
-    cursor.execute(sql, (lecture_idx, user_idx))
+    cursor.execute(sql, (lecture_name, lecture_capacity, lecture_target, lecture_price, lecture_teacher, lecture_deadline, lecture_start, lecture_end))
     conn.commit()
     conn.close()
+
+def drop_lecture(lecture_idx):
+    conn = database.get_connection()
+
+    sql = '''
+        delete from lecture_table
+        where lecture_idx = %s
+    '''
+
+    cursor = conn.cursor()
+    cursor.execute(sql, (lecture_idx))
+    conn.commit()
+    conn.close()
+
+
+
+# 계정의 유형을 파악하는 함수 -> 근데 이거 user_dao.py에 있어야 하는거 아닌감.. 겹치면 삭제각
+def check_user_type(user_idx):
+    conn = database.get_connection()
+
+    sql = '''
+        select user_type
+        from user_table
+        where user_idx = %s
+    '''
+
+    cursor = conn.cursor()
+    cursor.execute(sql, (user_idx))
+    result = cursor.fetchone()
+
+    conn.close()
+
+    return result[0]
+
 
 # 게시글 목록을 가져오는 함수
 def get_lecture_list(page):
@@ -58,7 +103,6 @@ def get_lecture_list(page):
     return result
 
 # 주어진 글 번호를 통해 게시글 정보를 가져와 반환하는 함수
-
 def get_lecture_content(lecture_idx):
     conn = database.get_connection()
 
@@ -93,11 +137,11 @@ def get_total_board_cnt():
     return result[0]
 
 # 함수 처리를 위한 사용자 정보를 가져온다.
-def get_user_login_data(lecture_idx, user_idx):
+def get_user_lecture_data(lecture_idx, user_idx):
     conn = database.get_connection()
 
     sql = '''
-        select lecture_idx, user_idx
+        select *
         from lecture_reservation_table
         where lecture_idx = %s and user_idx = %s
     '''
@@ -110,17 +154,45 @@ def get_user_login_data(lecture_idx, user_idx):
     return result
 
 # 강좌 취소를 클릭시 호출되는 함수
-def lecture_drop(lecture_idx, user_idx):
+def requested_lecture_drop(lecture_idx, user_idx):
     conn = database.get_connection()
 
     sql = '''
         delete from lecture_reservation_table
-        where lecture_idx = %s and user_idx = %s;
-    
+        where lecture_idx = %s and user_idx = %s
     '''
 
     cursor = conn.cursor()
     cursor.execute(sql, (lecture_idx, user_idx))
+    conn.commit()
+    conn.close()
+
+
+# 유저가 예약 버튼을 누르면 강좌 예약 테이블에 유저의 고유번호가 추가
+def reserve_lecture_user(lecture_idx, user_idx):
+    conn = database.get_connection()
+
+    sql = '''
+        insert into lecture_reservation_table(lecture_idx, user_idx, reservation_time)
+        values(%s, %s, sysdate())
+    '''
+    cursor = conn.cursor()
+    cursor.execute(sql, (lecture_idx, user_idx))
+    conn.commit()
+    conn.close()
+
+# 카운트로 현재 인원수 새서 뿌리기
+def count_lecture_user(lecture_idx):
+    conn = database.get_connection()
+    
+    sql = '''
+        select count(*)
+        from lecture_reservation_table
+        where lecture_idx = %s
+    '''
+
+    cursor = conn.cursor()
+    cursor.execute(sql, (lecture_idx))
     result = cursor.fetchone()
 
     conn.close()
