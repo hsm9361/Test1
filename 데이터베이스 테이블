@@ -1,4 +1,3 @@
-
 create database welfare; -- 데이터베이스 생성
 use welfare; -- 데이터베이스 사용
 drop database welfare;
@@ -19,6 +18,9 @@ create table user_table(
 
     constraint user_pk primary key(user_idx)
 );
+
+alter table user_table add user_kakao_idx int; -- 카카오 id 컬럼 추가
+
 
 create table user_type_table(
 	user_type_code char(2),
@@ -114,20 +116,43 @@ create table not_regular_support(
 );
 
 -- 후원 테이블
+drop table support_table;
 create table support_table(
 	support_idx int auto_increment, -- 고유번호
     support_name varchar(50) not null, -- 이름
     support_gender varchar(2), -- 성별
     support_birthday date, -- 생년월일
+    support_email varchar(100), -- email 주소
     support_phone varchar(25), -- 휴대폰번호
-    support_range int, -- 후원기간 3개월단위, 24개월까지
+    support_address varchar(200), -- 주소
+    support_type int, -- 후원 종류
+    support_content varchar(100), -- 후원 내용(지정후원의 경우)
+	support_range int, -- 후원기간 3개월단위, 24개월까지
+    support_method varchar(20), -- 후원 방법
     support_donation int, -- 기부금
     support_account varchar(30), -- 계좌
     support_account_name varchar(20), -- 예금주명
     support_bank_name varchar(20), -- 거래은행
-    support_withdrawal date, -- 출금일
-    constraint support_table_pk primary key(support_idx)
+    support_withdrawal int, -- 출금일
+    constraint support_table_pk primary key(support_idx),
+	constraint supprot_table_fk1 foreign key(support_type)
+		references support_type_table(support_type_idx) -- support_type 테이블과의 연결
 );
+
+
+drop table support_type_table;
+create table support_type_table(
+	support_type_idx int auto_increment, -- 고유번호
+    support_type_name varchar(10), -- 타입이름
+    constraint support_type_table primary key(support_type_idx)
+);
+
+insert into support_type_table(support_type_name) values ("일반후원"); -- 후원방법 컬럼 추가
+insert into support_type_table(support_type_name) values ("결원후원");
+insert into support_type_table(support_type_name) values ("지정후원");
+
+
+
 
 -- 시설대관 테이블
 drop table facility_rental_table;
@@ -135,7 +160,7 @@ create table facility_rental_table(
 	fr_idx int auto_increment, -- 고유번호
     fr_room char(2) not null, -- 대관장소 번호
     fr_user_name varchar(50) not null, -- 예약자 명
-    fr_reservition_day date not null, -- 예약일
+    fr_reservation_day TIMESTAMP DEFAULT NOW() not null, -- 예약일
     fr_visitors int not null, -- 방문자수
     fr_phone varchar(25) not null, -- 연락처
     fr_email varchar(100), -- 이메일
@@ -147,7 +172,9 @@ create table facility_rental_table(
     constraint facility_rental_table_fk2 foreign key(fr_hope_time)
 		references fr_time_table(fr_time_idx) --
 );
+
 drop table room_type_table;
+
 create table room_type_table(
 	room_idx char(2), -- 고유번호
     room_name varchar(30) not null, -- 대관장소 명
@@ -182,3 +209,12 @@ select * from fr_time_table;
 select *
         from user_table
         where user_id=2 and user_pw=3;
+
+select * from user_table;
+
+delete from support_table;
+
+select * from support_table;
+
+insert into lecture_table(lecture_name, lecture_enrollment, lecture_capacity, lecture_target, lecture_teacher, lecture_deadline, lecture_start, lecture_end)
+values('목도리 뜨기',0,2,'만 65세 이상','김푸름','2020-02-02','2020-03-01','2020-03-02');
