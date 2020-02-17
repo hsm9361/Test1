@@ -37,6 +37,7 @@ def oauth():
         session['login']='YES'
         return f'''
             <script>
+            alert('카카오 아이디 로그인 완료')
             location.href = "/"
             </script>
             '''

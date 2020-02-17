@@ -29,9 +29,9 @@ def support_pro():
 
     support_phone = request.form.get('sp_phone')  # 전화번호
 
-    address1 = request.form.get('sp_zp') # 동주소
-    address2 = request.form.get('sp_addr') # 상세주소
-    support_address = str(address1) + str(address2) # 주소
+    address1 = request.form.get('sp_address') # 동주소
+    address2 = request.form.get('sp_detailAddress') # 상세주소
+    support_address = str(address1) + " " + str(address2) # 주소
 
     support_type = request.form.get('sp_cgr') # 후원 종류
     support_content = request.form.get('sp_cgr_etc') # 후원 내용(지정후원의 경우)

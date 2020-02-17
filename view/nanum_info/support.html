@@ -5,9 +5,11 @@
     <title>Title</title>
     {%include 'include/lib.html'%}
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/volunteer.css') }}">
-	<script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
+	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 	<script src="{{url_for('static', filename='javascript/volunteer.js') }}"></script>
-	<script src="{{url_for('static', filename='javascript/facility_rental.js')}}"></script>
+	<script src="{{url_for('static', filename='javascript/support.js')}}"></script>
 </head>
 <body>
     {%include 'include/header.html'%}
@@ -45,7 +47,7 @@
             </div>
             <div id="valan" class="container tab-pane fade"><br>
                 <p>*필수입력</p>
-                <form action="/support_pro" method="post">
+                <form action="/support_pro" method="post" onsubmit="return validation()">
                     <div class="container">
                         <table class="table table-bordered">
                         <tbody>
@@ -120,11 +122,11 @@
 					<td colspan="3">
 						<ul class="T_UL">
 							<li class="marBott10">
-								<input type="text" id="sp_zp" name="sp_zp" class="sInput09" value="" title="자원봉사자정보 > 우편번호" readonly="">&nbsp;&nbsp;
-								<input type="button" onclick="openZipSearch();" value="우편번호검색" class="basicB">
-							</li>
-							<li>
-								<input type="text" id="sp_addr" name="sp_addr" class="sInput01" value="" title="자원봉사자정보 > 주소">
+								<input type="text" id="sp_postcode" name="sp_postcode" placeholder="우편번호">
+								<input type="button" onclick="DaumPostcode()" value="우편번호 찾기"><br>
+								<input type="text" id="sp_address" name="sp_address" placeholder="주소"><br>
+								<input type="text" id="sp_detailAddress" name="sp_detailAddress" placeholder="상세주소">
+								<input type="text" id="sp_extraAddress" name="sp_extraAddress" placeholder="참고항목">
 							</li>
 						</ul>
 					</td>
