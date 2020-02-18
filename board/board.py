@@ -5,7 +5,18 @@ board_blue = Blueprint('board_blue', __name__)
 # 공지사항 목록
 @board_blue.route('/board_list')
 def board_list():
-    html = render_template('board/board_list.html')
+    result=board_dao.board_list()
+    data_list = []
+    for row in result:
+        obj = {
+            'idx':row[0],
+            'subject':row[1],
+            'name':row[2],
+            'date':row[3],
+            'content':row[4]
+        }
+        data_list.append(obj)
+    html = render_template('board/board_list.html',data_list=data_list)
     return html
 
 # 공지사항 보기

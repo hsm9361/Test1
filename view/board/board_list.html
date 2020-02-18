@@ -25,12 +25,15 @@
                 </tr>
             </thead>
             <tbody>
+            {% for obj in data_list %}
                 <tr>
-                    <td>1</td>
-                    <td><a href="board_read">글 제목입니다</a></td>
-                    <td>오한솔</td>
-                    <td>2020-02-10</td>
+
+                    <td>{{obj.idx}}</td>
+                    <td><a href="board_read">{{obj.subject}}</a></td>
+                    <td>{{obj.name}}</td>
+                    <td>{{obj.date}}</td>
                 </tr>
+            {%endfor%}
             </tbody>
         </table>
 

@@ -65,26 +65,12 @@
                     </div>
                     <div class="card-body">
                         <table class="table">
+                            {% for obj in board_list %}
                             <tr>
-                                <td width="20%">1</td>
-                                <td>글제목1</td>
+                                <td width="20%">{{obj.idx}}</td>
+                                <td><a href="lecture_join/{{obj.lecture_idx}}">{{obj.name}}</a></td>
                             </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>글제목1</td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>글제목1</td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>글제목1</td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>글제목1</td>
-                            </tr>
+                            {% endfor%}
                         </table>
                     </div>
                 </div>
