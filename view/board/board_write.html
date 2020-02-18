@@ -23,7 +23,7 @@
             <div class="container" role="main">
                 <h7 style="margin-top:10px">공지사항 글쓰기</h7>
                 <form name="board_info_idx" id="board_form" role="form" method="post" enctype="multipart/form-data"
-                      action="#" style="margin-top:20px">
+                      action="/board_write_pro" style="margin-top:20px">
                     <div class="form-group">
                         <label for="board_title">제목</label>
                         <input type="text" class="form-control" name="board_title" id="board_title">
@@ -45,7 +45,7 @@
                     </div>
                     <div class="form-group">
                         <div class="float-right">
-                            <button type="button" class="btn btn-primary" id="btnSave">저장</button>
+                            <button type="submit" class="btn btn-primary" id="btnSave">저장</button>
                             <a href="/board_list" class="btn btn-primary" id="btnList">목록</a>
                         </div>
                     </div>

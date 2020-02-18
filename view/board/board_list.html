@@ -31,19 +31,6 @@
                     <td>오한솔</td>
                     <td>2020-02-10</td>
                 </tr>
-                <tr>
-                    <td>2</td>
-                    <td><a href="board_read">글 제목입니다</a></td>
-                    <td>홍사명</td>
-                    <td>2020-02-09</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td><a href="board_read">글 제목입니다</a></td>
-                    <td>김병헌</td>
-                    <td>2020-02-08</td>
-                </tr>
-
             </tbody>
         </table>
 
@@ -81,7 +68,9 @@
 
         <div class="clearfix" style="float:right">
             <div class="float-right">
+                {%if session['user_type']=='B'%}
                 <a href="/board_write" class="btn btn-primary">글쓰기</a>
+                {%endif%}
             </div>
         </div>
         

@@ -1,5 +1,5 @@
-from flask import Blueprint, render_template
-
+from flask import Blueprint, render_template, request,session
+from board import board_dao
 board_blue = Blueprint('board_blue', __name__)
 
 # 공지사항 목록
@@ -18,6 +18,19 @@ def board_read():
 @board_blue.route('/board_write')
 def board_write():
     html = render_template('board/board_write.html')
+    return html
+
+# 공지사항 글쓰기 추가
+
+@board_blue.route('/board_write_pro', methods=['post'])
+def board_write_pro():
+    board_title = request.form.get('board_title')  # 글제목
+    board_content = request.form.get('board_content')  # 내용
+    print(session)
+    bc_writer_idx=session['user_idx']
+    board_dao.board_write(board_title,bc_writer_idx,board_content)
+
+    html = render_template('main/index.html')
     return html
 
 # 공지사항 수정

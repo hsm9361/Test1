@@ -121,6 +121,7 @@ def user_login_pro():
     else :
         session['login']='YES'
         session['user_idx'] = result[0]
+        session['user_type'] = result[2]
         session['user_name'] = result[3]
         return 'YES'
 
