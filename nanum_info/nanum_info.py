@@ -49,7 +49,7 @@ def support_pro():
 
 
 
-    html = render_template('nanum_info/rental_ok.html')
+    html = render_template('nanum_info/sopport_ok.html')
     return html
 
 @nanum_info_blue.route('/facility_rental')

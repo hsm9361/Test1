@@ -45,7 +45,7 @@
                             {% for obj in content %}
                             <tr>
                                 <td width="20%">{{obj.lecture_idx}}</td>
-                                <td>{{obj.lecture_name}}</td>
+                                <td><a href="lecture_join/{{obj.lecture_idx}}">{{obj.lecture_name}}</a></td>
                             </tr>
                             {% endfor%}
                         </table>

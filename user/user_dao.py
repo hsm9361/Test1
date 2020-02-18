@@ -64,8 +64,47 @@ def user_kakao_login(headers):
         return True
     else:
         return False
+    
+def user_kakao_user_id(headers):
+        url = "https://kapi.kakao.com/v2/user/me"
+        response = requests.request("POST", url, headers=headers)
+        kakao_id_json = json.loads(((response.text).encode('utf-8')))  # 카카오 로그인 회원 id json
+        user_kakao_idx = kakao_id_json["id"]  # 카카오 로그인 회원 id (string)
+        conn = database.get_connection()
 
+        sql = '''
+            select user_name
+            from user_table
+            where user_kakao_idx=%s 
+            '''
 
+        cursor = conn.cursor()
+        cursor.execute(sql, user_kakao_idx)
+
+        result = cursor.fetchone()
+        return result[0]
+
+# 로그인 체크하는 함수
+def login_check(user_id,user_pw):
+    conn=database.get_connection()
+
+    sql='''
+        select user_idx, user_pw, user_type, user_name
+        from user_table
+        where user_id=%s and user_pw=%s
+        '''
+
+    cursor = conn.cursor()
+    cursor.execute(sql, (user_id,user_pw))
+
+    result = cursor.fetchone()
+    print(result)
+    if result == None :
+        conn.close()
+        return 'No'
+    else :
+        conn.close()
+        return result
 
 
 
@@ -92,27 +131,7 @@ def user_kakao_insert(headers):
 
 
 
-# 로그인 체크하는 함수
-def login_check(user_id,user_pw):
-    conn=database.get_connection()
 
-    sql='''
-        select user_idx, user_pw, user_type, user_name
-        from user_table
-        where user_id=%s and user_pw=%s
-        '''
-
-    cursor = conn.cursor()
-    cursor.execute(sql, (user_id,user_pw))
-
-    result = cursor.fetchone()
-    print(result)
-    if result == None :
-        conn.close()
-        return 'No'
-    else :
-        conn.close()
-        return result
 
 def email_check(email):
     conn = database.get_connection()

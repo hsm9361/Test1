@@ -35,6 +35,7 @@ def oauth():
     if user_dao.user_kakao_login(headers)==True:
         # 로그인 완료
         session['login']='YES'
+        session['user_name']=user_dao.user_kakao_user_id(headers)
         return f'''
             <script>
             alert('카카오 아이디 로그인 완료')
