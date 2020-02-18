@@ -84,7 +84,8 @@ def kakao_logout(headers):
 
 @user_blue.route('/mypage')
 def mypage():
-    html = render_template('user/mypage.html')
+    user_name=session['user_name']
+    html = render_template('user/mypage.html',user_name=user_name)
     return html
 
 @user_blue.route('/user_join')
@@ -114,11 +115,12 @@ def user_login_pro():
     # print(user_name,user_id,user_pw,user_email)
     result=user_dao.login_check(user_id,user_pw)
 
-    if result == 'No' :
+    if result[0] == 'No' :
         return 'NO'
     else :
         session['login']='YES'
-        session['user_idx'] = result
+        session['user_idx'] = result[0]
+        session['user_name'] = result[3]
         return 'YES'
 
 

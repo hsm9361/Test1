@@ -104,5 +104,5 @@ def rental_ok():
         }
         data_list.append(obj)
 
-    html = render_template('nanum_info/rental_ok.html', data_list=data_list)
+    html = render_template('nanum_info/support_ok.html', data_list=data_list)
     return html

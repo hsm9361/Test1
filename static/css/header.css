@@ -11,3 +11,6 @@ ul{
 .navbar-dark{
     background-color: #df4758!important
 }
+*{
+    font-weight : bold;
+}

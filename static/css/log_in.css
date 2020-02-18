@@ -15,6 +15,10 @@
 .btn-primary{
     width:100%;
 }
+.btn-warning{
+margin-top:10px;
+width:100%;
+}
 a{
 color: #cccccc;
 }
